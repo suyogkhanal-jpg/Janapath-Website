@@ -1,0 +1,161 @@
+.admin-body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 1.5rem;
+  background: linear-gradient(160deg, #1a1d24 0%, #2d3340 100%);
+  color: #e8eaef;
+  text-align: left;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.admin-wrap {
+  max-width: 28rem;
+  margin: 2rem auto;
+}
+
+.admin-card,
+.admin-panel {
+  background: #252a33;
+  border-radius: 12px;
+  padding: 1.75rem;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.admin-card h1,
+.admin-panel h1 {
+  margin: 0 0 0.75rem;
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+.admin-hint {
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  color: #a8b0bc;
+  line-height: 1.45;
+}
+
+.temp-password-row {
+  margin: 0 0 1.25rem;
+  padding: 0.75rem 1rem;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.temp-password-row .label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #8b95a5;
+  margin-bottom: 0.35rem;
+}
+
+.temp-password {
+  display: block;
+  font-size: 1.15rem;
+  font-family: ui-monospace, Consolas, monospace;
+  word-break: break-all;
+  color: #7dd3fc;
+}
+
+#login-form label {
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 0.35rem;
+  color: #c5ccd6;
+}
+
+#login-form input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.65rem 0.75rem;
+  margin-bottom: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #1e2329;
+  color: #e8eaef;
+  font-size: 1rem;
+}
+
+#login-form input:focus {
+  outline: none;
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.25);
+}
+
+.login-error {
+  margin: 0 0 0.75rem;
+  font-size: 0.85rem;
+  color: #fca5a5;
+}
+
+.btn-primary,
+.btn-secondary {
+  font-size: 0.95rem;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  font-weight: 600;
+}
+
+.btn-primary {
+  width: 100%;
+  background: #0ea5e9;
+  color: #0c1929;
+}
+
+.btn-primary:hover {
+  background: #38bdf8;
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: #e8eaef;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.admin-back {
+  margin: 1.25rem 0 0;
+  font-size: 0.9rem;
+}
+
+.admin-back a {
+  color: #7dd3fc;
+  text-decoration: none;
+}
+
+.admin-back a:hover {
+  text-decoration: underline;
+}
+
+.admin-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.admin-panel-header h1 {
+  margin: 0;
+}
+
+.admin-panel-body p {
+  margin: 0 0 0.75rem;
+  line-height: 1.5;
+  color: #c5ccd6;
+}
+
+.admin-panel-body .muted {
+  font-size: 0.9rem;
+  color: #8b95a5;
+}
