@@ -10,42 +10,160 @@
     <header>
       <div class="navbar">
         <div class="logo">
-          <img src="logo.jpg" alt="Janapath Logo" />
-          <div class="brand">Janapath Secondary Model School</div>
+        <a href="#">  <img src="logo.jpg" alt="Janapath Logo" /></a>
+          <div class="brand">Janapath Model Secondary School
+          
+          </div>
         </div>
         <nav>
           <a href="#">Home</a>
           <a href="#">About Us</a>
+          <a href="contactus.html">Contact Us</a>
           <a href="#">Academics</a>
           <a href="#">Admissions</a>
           <a href="#">News & Events</a>
-          <a href="admin.html">Admin</a>
         </nav>
       </div>
     </header>
     
     <main>
+      <marquee behavior="scroll" direction="left" class="announcement">
+        Welcome to Janapath Model Secondary School! Enroll now for the 2024-2025 academic year. Developed by Website Team.
+      </marquee>
       <div class="scroll">
         <div class="slides">
-          <a href="#" class="slide" style="background-image: url('img1.jpeg');"></a>
+          <a href="#" class="slide" style="background-image: url('school.jpg');"></a>
           <a href="#" class="slide" style="background-image: url('img2.jpeg');"></a>
-          <a href="#" class="slide" style="background-image: url('img3.jpeg');"></a>
+          <a href="#" class="slide" style="background-image: url('img1.jpeg');"></a>
+        </div>
+        <div class="status-card">
+            <div id="business-status" class="status-pill">OPEN NOW</div>
+            <div class="status-hours">6:00 AM - 5:00 PM</div>
+        </div>
+        <div class="slide-overlay">
+          <img src="logo.jpg" alt="School logo">
+          <div class="overlay-text">Janapath Model Secondary School
+              <div class="loc">Kalanki-14, Kathmandu, Nepal</div>
+          </div>
         </div>
       </div>
+
+      <!-- About Section -->
+      <section class="about-section">
+        <div class="container">
+          <h2>About Janapath Model Secondary School</h2>
+          <p>Janapath Model Secondary School is committed to providing quality education and fostering holistic development in our students. Located in the heart of Kathmandu, we offer a nurturing environment where students can excel academically, socially, and personally.</p>
+          <div class="about-stats">
+            <div class="stat">
+              <h3>500+</h3>
+              <p>Students</p>
+            </div>
+            <div class="stat">
+              <h3>50+</h3>
+              <p>Teachers</p>
+            </div>
+            <div class="stat">
+              <h3>20+</h3>
+              <p>Years of Excellence</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section class="features-section">
+        <div class="container">
+          <h2>Why Choose Us?</h2>
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon">📚</div>
+              <h3>Quality Education</h3>
+              <p>Comprehensive curriculum with experienced faculty</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">🏫</div>
+              <h3>Modern Facilities</h3>
+              <p>State-of-the-art classrooms, labs, and sports facilities</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">🎓</div>
+              <h3>Holistic Development</h3>
+              <p>Focus on academics, sports, arts, and character building</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">🌟</div>
+              <h3>Student-Centered</h3>
+              <p>Individual attention and personalized learning approach</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- News & Events Section -->
+      <section class="news-section">
+        <div class="container">
+          <h2>Latest News & Events</h2>
+          <div class="news-grid">
+            <div class="news-card">
+              <h3>Annual Sports Day</h3>
+              <p>Join us for our annual sports day celebration on April 15th, 2026. Various competitions and fun activities for all students!</p>
+              <a href="#" class="read-more">Read More</a>
+            </div>
+            <div class="news-card">
+              <h3>Science Fair 2026</h3>
+              <p>Our students showcased innovative projects at the inter-school science fair. Congratulations to all participants!</p>
+              <a href="#" class="read-more">Read More</a>
+            </div>
+            <div class="news-card">
+              <h3>Admissions Open</h3>
+              <p>Admissions are now open for the 2026-2027 academic year. Limited seats available. Apply now!</p>
+              <a href="#" class="read-more">Read More</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Call to Action -->
+      <section class="cta-section">
+        <div class="container">
+          <h2>Ready to Join Our Community?</h2>
+          <p>Take the first step towards a bright future. Contact us today for admissions or inquiries.</p>
+          <a href="contactus.html" class="cta-button">Contact Us</a>
+        </div>
+      </section>
     </main>
     
     <footer>
-        <p1>Follow us on:</br></p1><p1>
-          <a href="https://twitter.com">Twitter</a> | 
-          <a href="https://youtube.com" >▶YouTube</a>
-        </p1>
-        <p>
-          Contact Details<br />
-          Phone No:<br />
-          Address: Kalanki,Janapath Marg,Kathmandu Nepal<br />
-          Email:nothing@gmail.com
-        </p>
-        <p>Copyright © 2026 Janapath Model Secondary School | <a href="#">Powered by Website Team</a></p>
+       
+        <div class="footer-content">
+            <p1>Follow us on:</br></p1><p1>
+              <a href="https://twitter.com">Twitter</a> | 
+              <a href="https://youtube.com" >▶YouTube</a>
+            </p1>
+            <p>
+              Contact Details<br />
+              Phone No:
+01-5219059<br />
+              Address: Kalanki,Janapath Marg,Kathmandu Nepal<br />
+              Email:janapath2012@gmail.com
+            </p>
+            <p>Copyright © 2026 Janapath Model Secondary School | <a href="#">Powered by Website Team</a></p>
+        </div>
     </footer>
+    <script>
+      const statusEl = document.getElementById('business-status');
+      function updateBusinessStatus() {
+        const now = new Date();
+        const currentMinutes = now.getHours() * 60 + now.getMinutes();
+        const openMinutes = 6 * 60;
+        const closeMinutes = 17 * 60;
+        const isOpen = currentMinutes >= openMinutes && currentMinutes < closeMinutes;
+        statusEl.textContent = isOpen ? 'OPEN NOW' : 'CLOSED NOW';
+        statusEl.classList.toggle('open', isOpen);
+        statusEl.classList.toggle('closed', !isOpen);
+      }
+      updateBusinessStatus();
+      setInterval(updateBusinessStatus, 60000);
+    </script>
 </body>
 </html>
