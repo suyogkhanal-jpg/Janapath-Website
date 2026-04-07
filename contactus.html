@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Janapath School</title>
+    <style>
+        /* --- CSS STYLING --- */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        /* 🔍 Search Bar Container */
+        .search-container {
+            text-align: center;
+            margin-bottom: 30px;
+            position: sticky; /* Keeps search visible while scrolling */
+            top: 10px;
+            z-index: 100;
+        }
+
+        #staffSearch {
+            width: 90%;
+            max-width: 500px;
+            padding: 15px 25px;
+            border-radius: 30px;
+            border: 2px solid #34495e;
+            font-size: 16px;
+            outline: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        #staffSearch:focus {
+            border-color: #2980b9;
+            box-shadow: 0 4px 20px rgba(41, 128, 185, 0.3);
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+
+        .table-card {
+            flex: 1;
+            min-width: 450px;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 1px solid #e1e4e8;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        th {
+            background-color: #34495e;
+            color: white;
+            text-align: left;
+            padding: 12px;
+        }
+
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* 📞 Click-to-Call Link Styling */
+        .phone-link {
+            text-decoration: none;
+            color: #2980b9;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .phone-link:hover {
+            color: #1a5276;
+            text-decoration: underline;
+        }
+
+        tr:hover {
+            background-color: #f1f8ff !important;
+            transition: 0.2s;
+        }
+
+        .tech-header {
+            background-color: #e8f4fd;
+            font-weight: bold;
+            color: #2980b9;
+            text-align: center;
+        }
+
+        .part-time-header {
+            background-color: #fff9e6;
+            font-weight: bold;
+            color: #d48e00;
+            text-align: center;
+        }
+
+        .btn-container {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    width: 100%;    
+    clear: both;   
+    display: block; 
+}
+        }
+
+        .back-btn {
+            text-decoration: none;
+            background: #34495e;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #2c3e50;
+            transform: translateY(-2px);
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 500px) {
+            .table-card { min-width: 100%; padding: 10px; }
+            table { font-size: 11px; }
+        }
+	
+	/* Styling the new Category Banners */
+	.category-banner {
+  	  padding: 12px;
+    	margin: -20px -20px 15px -20px; /* Aligns with card edges */
+   	 border-radius: 15px 15px 0 0;   /* Matches card corners */
+   	 font-weight: bold;
+   	 font-size: 15px;
+   	 text-align: center;
+   	 letter-spacing: 0.5px;
+	}
+
+	/* Different colors for different streams */
+	.tech-bg {
+   	 background: linear-gradient(135deg, #2980b9, #3498db);
+   	 color: white;
+	}
+
+	.part-time-bg {
+   	 background: linear-gradient(135deg, #f39c12, #f1c40f);
+  	  color: white;
+	}
+
+	/* Ensure table-card has overflow hidden to keep banner corners rounded */
+	.table-card {
+   	 overflow: hidden; 
+   	flex: 1;
+   	 min-width: 450px;
+  	  background: white;
+  	  padding: 20px;
+ 	   border-radius: 15px;
+ 	   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+ 	   border: 1px solid #e1e4e8;
+	}
+
+.search-container {
+    text-align: center;
+    margin-bottom: 30px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: #f0f2f5; /* Matches your body background */
+    padding: 15px 0;
+}
+
+/* --- Add this at the bottom of your CSS --- */
+.inquiry-card {
+    min-width: 350px;
+    background: #ffffff;
+    border: 2px solid #1abc9c; /* Adds a nice teal border */
+}
+
+.inquiry-bg {
+    background: linear-gradient(135deg, #1abc9c, #16a085);
+    color: white;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    color: #34495e;
+    margin-bottom: 5px;
+}
+
+.form-group input, 
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    box-sizing: border-box; 
+}
+
+.send-btn {
+    width: 100%;
+    background: #1abc9c;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.send-btn:hover {
+    background: #16a085;
+    transform: scale(1.02);
+}
+
+.inquiry-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.inquiry-card {
+    max-width: 800px; /* Wider for the top position */
+    width: 95%;
+}
+
+/* Places Name and Contact side-by-side on larger screens */
+.form-row {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.form-row .form-group {
+    flex: 1;
+    min-width: 250px;
+}
+
+.contact-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.action-link {
+    font-size: 1.2rem;
+    transition: transform 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+}
+
+.whatsapp-icon { color: #25D366; }
+.email-icon { color: #ea4335; }
+.phone-link { font-weight: 600; color: #2c3e50; text-decoration: none; }
+
+.action-link:hover { transform: scale(1.2); }
+
+.map-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    width: 100%;
+}
+
+.map-card {
+    max-width: 950px;
+    width: 95%;
+}
+
+.map-responsive {
+    overflow: hidden;
+    padding-bottom: 350px;
+    position: relative;
+    height: 0;
+    border-radius: 8px;
+}
+
+.map-responsive iframe {
+    left: 0;
+    top: 0;
+    height: 350px;
+    width: 100%;
+    position: absolute;
+}
+/* Force the map container to take the full width of the screen */
+.map-container {
+    width: 100%;
+    display: block; /* Changes from flex to block */
+    margin-top: 30px;
+}
+
+/* Force the Map Card to be centered and wide */
+.map-card {
+    max-width: 1000px; /* Adjust this to match your table widths */
+    width: 95%;
+    margin: 0 auto; /* This centers the card */
+}
+
+/* Fix the button container */
+.btn-container {
+    width: 100%;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 50px;
+    clear: both; /* Prevents side-by-side floating */
+    display: block;
+}
+
+.back-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    /* Re-add your colors here if they disappeared */
+    background-color: #2c3e50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+/* Modal Background (Blurry) */
+.modal-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal Box */
+.modal-content {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    transform: scale(0.7);
+    transition: 0.3s;
+    max-width: 400px;
+    width: 90%;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-overlay.active .modal-content {
+    transform: scale(1);
+}
+
+.modal-icon {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.modal-btn {
+    background: #1abc9c;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+
+.modal-btn:hover {
+    background: #16a085;
+    transform: scale(1.05);
+}
+
+/* Paste Part B at the end of your existing CSS */
+#scrollTopBtn {
+    display: none; /* Keep this 'none' - the JS will turn it on */
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 999;
+    background-color: #1abc9c; /* School's theme color */
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: all 0.3s ease; /* Makes the hover and fade smooth */
+}
+
+#scrollTopBtn:hover {
+    background-color: #2c3e50;
+    transform: translateY(-5px) scale(1.1); /* Lifts and grows slightly on hover */
+}
+
+    </style>
+</head>
+<body>
+
+    <div class="inquiry-container">
+        <div class="table-card inquiry-card">
+            <div class="category-banner inquiry-bg">
+                <span>📩 General Inquiry</span>
+            </div>
+            <form id="inquiryForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email or Phone</label>
+                        <input type="text" placeholder="How can we reach you?" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea rows="3" placeholder="Type your question here..." required></textarea>
+                </div>
+                <button class="send-btn" onclick="sendMessage()">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+	<h2>Janapath Secondary School Staff Directory</h2>
+
+    <div class="search-container">
+        <input type="text" id="staffSearch" placeholder="Type a name, post, or phone number..." onkeyup="filterStaff()">
+    </div>
+
+    <div class="container">
+    <div class="table-card">
+        <table>
+            <thead>
+                <tr><th>SN.</th><th>Name</th><th>Post</th><th>Contact Actions</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>Hira Devi Shrestha</td><td>Principal</td><td>
+                    <div class="contact-actions">
+                        <a href="tel:9841252262" class="phone-link">9841252262</a>
+                        <a href="https://wa.me/9779841252262" target="_blank" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a>
+                        <a href="mailto:info@janapath.edu.np" class="action-link email-icon"><i class='bx bx-envelope'></i></a>
+                    </div>
+                </td></tr>
+                <tr><td>2</td><td>Kiran Shali Ghimire</td><td>Asst. Principal</td><td>
+                    <div class="contact-actions">
+                        <a href="tel:9851212707" class="phone-link">9851212707</a>
+                        <a href="https://wa.me/9779851212707" target="_blank" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a>
+                        <a href="mailto:info@janapath.edu.np" class="action-link email-icon"><i class='bx bx-envelope'></i></a>
+                    </div>
+                </td></tr>
+                <tr><td>3</td><td>Gopal Basnet</td><td>Asst. Principal</td><td>
+                    <div class="contact-actions">
+                        <a href="tel:9841351991" class="phone-link">9841351991</a>
+                        <a href="https://wa.me/9779841351991" target="_blank" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a>
+                        <a href="mailto:info@janapath.edu.np" class="action-link email-icon"><i class='bx bx-envelope'></i></a>
+                    </div>
+                </td></tr>
+                <tr><td>4</td><td>Kiran Chandra K.C.</td><td>Coordinator</td><td><div class="contact-actions"><a href="tel:9841822660" class="phone-link">9841822660</a><a href="https://wa.me/9779841822660" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>5</td><td>Prem Singh Saud</td><td>Coordinator</td><td><div class="contact-actions"><a href="tel:9848851512" class="phone-link">9848851512</a><a href="https://wa.me/9779848851512" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>6</td><td>Jayanti Regmi</td><td>Teacher</td><td><div class="contact-actions"><a href="tel:9841554936" class="phone-link">9841554936</a><a href="https://wa.me/9779841554936" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>7</td><td>Ganga Ghimire</td><td>Class Teacher (9A)</td><td><div class="contact-actions"><a href="tel:9860294501" class="phone-link">9860294501</a><a href="https://wa.me/9779860294501" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>8</td><td>Sabita Regmi</td><td>Teacher</td><td><div class="contact-actions"><a href="tel:9851057261" class="phone-link">9851057261</a><a href="https://wa.me/9779851057261" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>9</td><td>Dinesh Kumar Neupane</td><td>Class Teacher (7B)</td><td><div class="contact-actions"><a href="tel:9841290300" class="phone-link">9841290300</a><a href="https://wa.me/9779841290300" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>10</td><td>Aaiti Ghale</td><td>Class Teacher (6A)</td><td><div class="contact-actions"><a href="tel:9841819592" class="phone-link">9841819592</a><a href="https://wa.me/9779841819592" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>11</td><td>Nirmala Ghimire</td><td>Teacher (10A)</td><td><div class="contact-actions"><a href="tel:9841351327" class="phone-link">9841351327</a><a href="https://wa.me/9779841351327" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>12</td><td>Surendra Devkota</td><td>Teacher (10B)</td><td><div class="contact-actions"><a href="tel:9841733931" class="phone-link">9841733931</a><a href="https://wa.me/9779841733931" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>13</td><td>Indira Dawadi</td><td>Teacher (8A)</td><td><div class="contact-actions"><a href="tel:9841160416" class="phone-link">9841160416</a><a href="https://wa.me/9779841160416" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>14</td><td>Lalita Bhattarai</td><td>Teacher (8B)</td><td><div class="contact-actions"><a href="tel:9861165750" class="phone-link">9861165750</a><a href="https://wa.me/9779861165750" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>15</td><td>Rajan Sedhai</td><td>Teacher (7A)</td><td><div class="contact-actions"><a href="tel:9841760046" class="phone-link">9841760046</a><a href="https://wa.me/9779841760046" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>16</td><td>Sachita Pandey</td><td>Teacher</td><td><div class="contact-actions"><a href="tel:9843247048" class="phone-link">9843247048</a><a href="https://wa.me/9779843247048" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>17</td><td>Kiran Adhikari</td><td>Teacher (4A)</td><td><div class="contact-actions"><a href="tel:9841944763" class="phone-link">9841944763</a><a href="https://wa.me/9779841944763" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>18</td><td>Ravila Regmi Khanal</td><td>Teacher (2)</td><td><div class="contact-actions"><a href="tel:9841396609" class="phone-link">9841396609</a><a href="https://wa.me/9779841396609" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>19</td><td>Nirmala Devi Adhikari</td><td>Teacher</td><td><div class="contact-actions"><a href="tel:9843183550" class="phone-link">9843183550</a><a href="https://wa.me/9779843183550" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>20</td><td>Thanisara Rana</td><td>Teacher</td><td><div class="contact-actions"><a href="tel:9841609865" class="phone-link">9841609865</a><a href="https://wa.me/9779841609865" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>21</td><td>Rita Aryal (Paudel)</td><td>Teacher (3)</td><td><div class="contact-actions"><a href="tel:9841728446" class="phone-link">9841728446</a><a href="https://wa.me/9779841728446" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>22</td><td>Dr. Tika Dhakal</td><td>Discipline Comm.</td><td><div class="contact-actions"><a href="tel:9851117174" class="phone-link">9851117174</a><a href="https://wa.me/9779851117174" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>23</td><td>Yubaraj Ghimire</td><td>Coordinator (5A)</td><td><div class="contact-actions"><a href="tel:9841330033" class="phone-link">9841330033</a><a href="https://wa.me/9779841330033" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>24</td><td>Pushpa Kumari Paudel</td><td>Teacher</td><td><div class="contact-actions"><a href="tel:9841524793" class="phone-link">9841524793</a><a href="https://wa.me/9779841524793" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>25</td><td>Rashmi Napit</td><td>Instructor (6B)</td><td><div class="contact-actions"><a href="tel:9849337933" class="phone-link">9849337933</a><a href="https://wa.me/9779849337933" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>26</td><td>Ratna Kumari Maharjan</td><td>Instructor (4B)</td><td><div class="contact-actions"><a href="tel:9841553631" class="phone-link">9841553631</a><a href="https://wa.me/9779841553631" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="table-card">
+        <table>
+            <thead>
+                <tr><th>SN.</th><th>Name</th><th>Post</th><th>Contact Actions</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>27</td><td>Bina Maharjan</td><td>Instructor</td><td><div class="contact-actions"><a href="tel:9841505399" class="phone-link">9841505399</a><a href="https://wa.me/9779841505399" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>28</td><td>Sita Khanal</td><td>CD Coordinator</td><td><div class="contact-actions"><a href="tel:9851151317" class="phone-link">9851151317</a><a href="https://wa.me/9779851151317" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>29</td><td>Sudha K.C.</td><td>Accountant</td><td><div class="contact-actions"><a href="tel:9849885406" class="phone-link">9849885406</a><a href="https://wa.me/9779849885406" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>30</td><td>Sushila Subedi</td><td>Office Asst.</td><td><div class="contact-actions"><a href="tel:9841124621" class="phone-link">9841124621</a><a href="https://wa.me/9779841124621" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>31</td><td>Eliza Ranamagar</td><td>UKG Teacher</td><td><div class="contact-actions"><a href="tel:9866477847" class="phone-link">9866477847</a><a href="https://wa.me/9779866477847" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>32</td><td>Laxmi Bhattarai</td><td>Nursery Teacher</td><td><div class="contact-actions"><a href="tel:9841767817" class="phone-link">9841767817</a><a href="https://wa.me/9779841767817" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>33</td><td>Ramita Rayamajhi</td><td>Account Asst.</td><td><div class="contact-actions"><a href="tel:9849023287" class="phone-link">9849023287</a><a href="https://wa.me/9779849023287" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>34</td><td>Sangita Adhikari</td><td>LKG Teacher</td><td><div class="contact-actions"><a href="tel:9841518968" class="phone-link">9841518968</a><a href="https://wa.me/9779841518968" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>35</td><td>Sabina Lamichhane</td><td>Nursery Teacher</td><td><div class="contact-actions"><a href="tel:9811422325" class="phone-link">9811422325</a><a href="https://wa.me/9779811422325" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>36</td><td>Nanimaya Shrestha</td><td>Teacher</td><td><div class="contact-actions"><a href="tel:9841770199" class="phone-link">9841770199</a><a href="https://wa.me/9779841770199" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>37</td><td>Samjhana Bhattarai</td><td>Librarian</td><td><div class="contact-actions"><a href="tel:9843354709" class="phone-link">9843354709</a><a href="https://wa.me/9779843354709" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>38</td><td>Muna Khatri</td><td>Teacher</td><td><div class="contact-actions"><a href="tel:9842932108" class="phone-link">9842932108</a><a href="https://wa.me/9779842932108" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>39</td><td>Parbati Sapkota</td><td>School Nurse</td><td><div class="contact-actions"><a href="tel:9841353048" class="phone-link">9841353048</a><a href="https://wa.me/9779841353048" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>40</td><td>Hem Kumari Adhikari</td><td>Asst. (CDA)</td><td><div class="contact-actions"><a href="tel:9843130099" class="phone-link">9843130099</a><a href="https://wa.me/9779843130099" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>41</td><td>Rita Karanjit</td><td>Asst. (CDA)</td><td><div class="contact-actions"><a href="tel:9843536102" class="phone-link">9843536102</a><a href="https://wa.me/9779843536102" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>42</td><td>Dipen Chaudhary</td><td>Security Guard</td><td><div class="contact-actions"><a href="tel:9745597055" class="phone-link">9745597055</a><a href="https://wa.me/9779745597055" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="table-card">
+        <div class="category-banner tech-bg"><span>💻 Computer Engineering (Technical Stream)</span></div>
+        <table>
+            <thead>
+                <tr><th>SN.</th><th>Name</th><th>Post</th><th>Contact Actions</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>Ritu Shrestha</td><td>Comp. Instructor</td><td><div class="contact-actions"><a href="tel:9862582324" class="phone-link">9862582324</a><a href="https://wa.me/9779862582324" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>2</td><td>Pintu Shah</td><td>Physics Instructor</td><td><div class="contact-actions"><a href="tel:9845552818" class="phone-link">9845552818</a><a href="https://wa.me/9779845552818" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>3</td><td>Punam Acharya</td><td>Chemistry Instructor</td><td><div class="contact-actions"><a href="tel:9867805281" class="phone-link">9867805281</a><a href="https://wa.me/9779867805281" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>4</td><td>Prashant Shrestha</td><td>Comp. Instructor</td><td><div class="contact-actions"><a href="tel:9840007761" class="phone-link">9840007761</a><a href="https://wa.me/9779840007761" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>5</td><td>Bhesh Bahadur Chauhan</td><td>Teacher (9B)</td><td><div class="contact-actions"><a href="tel:9849822946" class="phone-link">9849822946</a><a href="https://wa.me/9779849822946" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>6</td><td>Savin Dangol</td><td>Asst. Comp. Inst.</td><td><div class="contact-actions"><a href="tel:9741662666" class="phone-link">9741662666</a><a href="https://wa.me/9779741662666" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="table-card">
+        <div class="category-banner part-time-bg"><span>⏳ Part-time Teachers</span></div>
+        <table>
+            <thead>
+                <tr><th>SN.</th><th>Name</th><th>Post</th><th>Contact Actions</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>Bhrugudevi Sapkota</td><td>Teacher</td><td><div class="contact-actions"><a href="tel:9841829736" class="phone-link">9841829736</a><a href="https://wa.me/9779841829736" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>2</td><td>Surya Chapagai</td><td>Teacher</td><td><div class="contact-actions"><a href="tel:9849418760" class="phone-link">9849418760</a><a href="https://wa.me/9779849418760" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>3</td><td>Anita Shrestha</td><td>Teacher</td><td><div class="contact-actions"><a href="tel:9849418760" class="phone-link">9849418760</a><a href="https://wa.me/9779849418760" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>4</td><td>Prakash Shrestha</td><td>Teacher</td><td><div class="contact-actions"><a href="tel:9851184501" class="phone-link">9851184501</a><a href="https://wa.me/9779851184501" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+                <tr><td>5</td><td>Rupesh Budhathoki</td><td>Teacher</td><td><div class="contact-actions"><a href="tel:9841499458" class="phone-link">9841499458</a><a href="https://wa.me/9779841499458" class="action-link whatsapp-icon"><i class='bx bxl-whatsapp'></i></a></div></td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div> <br>
+
+   <div class="map-responsive">
+    <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.846549298492!2d85.2778692!3d27.6907409!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1870f57f16ad%3A0x2dd4a5e8849f77e5!2sJanapath%20Secondary%20School!5e0!3m2!1sen!2snp!4v1712479500000!5m2!1sen!2snp" 
+        width="100%" 
+        height="450" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+</div>
+            <p style="text-align: center; color: #7f8c8d; padding: 15px 0;">
+                <strong>Address:</strong> Kalanki (Near Bakaino Restaurant), Kathmandu, Nepal
+            </p>
+        </div>
+    </div>
+
+    <div class="btn-container">
+        <a href="index.html" class="back-btn">Back to Home</a>
+    </div>
+
+<div id="customModal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-icon">✅</div>
+        <h2>Message Sent!</h2>
+        <p id="modalUserName">Thank you for contacting us.</p>
+        <p>We will get back to you shortly.</p>
+        <button onclick="closeModal()" class="modal-btn">Great!</button>
+    </div>
+</div>
+
+  <script>
+  function sendMessage() {
+    const name = document.querySelector('input[placeholder="Enter your full name"]').value;
+    const contact = document.querySelector('input[placeholder="How can we reach you?"]').value;
+    const message = document.querySelector('textarea').value;
+
+    if(name.trim() !== "" && contact.trim() !== "" && message.trim() !== "") {
+        
+        // Set the user's name in the modal
+        document.getElementById('modalUserName').innerText = "Thank you, " + name + "!";
+        
+        // Show the modal
+        document.getElementById('customModal').classList.add('active');
+        
+        // Clear the form
+        document.querySelector('input[placeholder="Enter your full name"]').value = "";
+        document.querySelector('input[placeholder="How can we reach you?"]').value = "";
+        document.querySelector('textarea').value = "";
+        
+    } else {
+        alert("⚠️ Please fill in all fields.");
+    }
+}
+
+// Function to close the modal
+function closeModal() {
+    document.getElementById('customModal').classList.remove('active');
+}
+</script>
+<script>
+// 1. Wait for the page to load
+document.addEventListener("DOMContentLoaded", function() {
+    
+    const mybutton = document.getElementById("scrollTopBtn");
+
+    // 2. Listen for scrolling
+    window.addEventListener("scroll", function() {
+        // If we scroll down more than 200 pixels
+        if (window.pageYOffset > 200) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    });
+});
+
+// 3. The Scroll Function
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+</script>
+<button id="scrollTopBtn" onclick="scrollToTop()" title="Go to top">↑</button>
+
+    <div id="customModal" class="modal-overlay">
+        ...
+    </div>
+
+</body>
+</body>
+</html>
