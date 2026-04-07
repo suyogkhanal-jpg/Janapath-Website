@@ -20,7 +20,7 @@
           <a href="#">About Us</a>
           <a href="#admissions">Enroll Now</a>
           <a href="#">Academics</a>
-          <a href="#admissions">Admissions</a>
+          <a href="contactus.html">Contact Us</a>
           <a href="notices.html">Notice</a>
           <a href="notices.html">News & Events</a>
           <a href="admin.html">Admin</a>
@@ -37,7 +37,6 @@
           <a href="#" class="slide" style="background-image: url('school.jpg');"></a>
           <a href="#" class="slide" style="background-image: url('img2.jpeg');"></a>
           <a href="#" class="slide" style="background-image: url('img1.jpeg');"></a>
-          <a href="#" class="slide" style="background-image: url('img3.jpeg');"></a>
         </div>
         <div class="status-card">
             <div id="business-status" class="status-pill">OPEN NOW</div>
@@ -138,13 +137,15 @@
     </footer>
     <script>
       const statusEl = document.getElementById('business-status');
+      const hoursEl = document.querySelector('.status-hours');
       function updateBusinessStatus() {
         const now = new Date();
         const currentMinutes = now.getHours() * 60 + now.getMinutes();
         const openMinutes = 6 * 60;
         const closeMinutes = 17 * 60;
         const isOpen = currentMinutes >= openMinutes && currentMinutes < closeMinutes;
-        statusEl.textContent = isOpen ? 'OPEN NOW' : 'CLOSED NOW';
+        statusEl.textContent = isOpen ? 'OPEN NOW' : 'CLOSED NOW (5:00 PM - 6:00 AM)';
+        hoursEl.textContent = isOpen ? '6:00 AM - 5:00 PM' : '5:00 PM - 6:00 AM';
         statusEl.classList.toggle('open', isOpen);
         statusEl.classList.toggle('closed', !isOpen);
       }
