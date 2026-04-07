@@ -4,82 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Janapath School</title>
-  <style>
-        /* This section controls the look of the whole page */
+    <style>
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f0f2f5;
             margin: 0;
-            padding: 30px;
+            padding: 20px;
         }
-
         h2 {
             text-align: center;
-            color: #1a2a3a;
+            color: #2c3e50;
             margin-bottom: 30px;
         }
-
-        .main-container {
+        .container {
             display: flex;
-            gap: 25px;
+            gap: 20px;
             justify-content: center;
             flex-wrap: wrap;
+            align-items: flex-start;
         }
-
-        /* This makes the white 'cards' with rounded corners */
-        .staff-card {
+        .table-card {
             flex: 1;
             min-width: 480px;
-            background: #ffffff;
+            background: white;
             padding: 20px;
-            border-radius: 15px; /* Rounded corners */
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08); /* Soft shadow */
+            border-radius: 15px; /* Rounded Corners */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* Nice Shadow */
             border: 1px solid #e1e4e8;
         }
-
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 14px;
+            font-size: 13px;
         }
-
         th {
-            background-color: #2c3e50;
+            background-color: #34495e;
             color: white;
             text-align: left;
             padding: 12px;
-            border-radius: 5px 5px 0 0;
         }
-
         td {
             padding: 10px;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid #eee;
         }
-
-        /* This is the HOVER effect - it highlights the row you touch */
+        /* HOVER EFFECT - Row lights up on mouseover */
         tr:hover {
-            background-color: #eef7ff !important;
-            cursor: pointer;
+            background-color: #f1f8ff !important;
+            transition: 0.2s;
         }
-
         .tech-header {
-            background-color: #d1ecf1;
-            color: #0c5460;
+            background-color: #e8f4fd;
             font-weight: bold;
+            color: #2980b9;
             text-align: center;
         }
-
-        .footer-link {
+        .part-time-header {
+            background-color: #fff9e6;
+            font-weight: bold;
+            color: #d48e00;
             text-align: center;
-            margin-top: 40px;
         }
-
-        .btn {
+        .btn-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .back-btn {
             text-decoration: none;
-            background: #2c3e50;
+            background: #34495e;
             color: white;
             padding: 12px 30px;
-            border-radius: 25px; /* Rounded button */
+            border-radius: 25px; /* Rounded Button */
             font-weight: bold;
         }
     </style>
@@ -122,8 +116,6 @@
                     <tr><td>25</td><td>Pushpa Kumari Paudel</td><td>Teacher</td><td>9841524793</td></tr>
                     <tr><td>26</td><td>Rashmi Napit</td><td>Instructor (6B)</td><td>9849337933</td></tr>
                     <tr><td>27</td><td>Ratna Kumari Maharjan</td><td>Instructor (4B)</td><td>9841553631</td></tr>
-                    <tr><td>28</td><td>Bina Maharjan</td><td>Instructor</td><td>9841505399</td></tr>
-                    <tr><td>29</td><td>Sita Khanal</td><td>CD Coordinator</td><td>9851151317</td></tr>
                 </tbody>
             </table>
         </div>
@@ -134,6 +126,8 @@
                     <tr><th>SN.</th><th>Name</th><th>Post</th><th>Phone</th></tr>
                 </thead>
                 <tbody>
+                    <tr><td>28</td><td>Bina Maharjan</td><td>Instructor</td><td>9841505399</td></tr>
+                    <tr><td>29</td><td>Sita Khanal</td><td>CD Coordinator</td><td>9851151317</td></tr>
                     <tr><td>30</td><td>Sudha K.C.</td><td>Accountant</td><td>9849885406</td></tr>
                     <tr><td>31</td><td>Sushila Subedi</td><td>Office Asst.</td><td>9841124621</td></tr>
                     <tr><td>32</td><td>Eliza Ranamagar</td><td>UKG Teacher</td><td>9866477847</td></tr>
@@ -149,7 +143,7 @@
                     <tr><td>42</td><td>Rita Karanjit</td><td>Asst. (CDA)</td><td>9843536102</td></tr>
                     <tr><td>43</td><td>Dipen Chaudhary</td><td>Security Guard</td><td>9745597055</td></tr>
 
-                    <tr class="section-header"><td colspan="4">Computer Engineering (Technical Stream)</td></tr>
+                    <tr class="tech-header"><td colspan="4">Computer Engineering (Technical Stream)</td></tr>
                     <tr><td>1</td><td>Ritu Shrestha</td><td>Comp. Instructor</td><td>9862582324</td></tr>
                     <tr><td>2</td><td>Pintu Shah</td><td>Comp. Instructor</td><td>9845552818</td></tr>
                     <tr><td>3</td><td>Prashant Shrestha</td><td>Comp. Instructor</td><td>9840007761</td></tr>
