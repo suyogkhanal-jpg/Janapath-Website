@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Janapath Website</title>
+    <title>Janapath Secondary School</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,24 +11,26 @@
       <div class="navbar">
         <div class="logo">
         <a href="#">  <img src="logo.jpg" alt="Janapath Logo" /></a>
-          <div class="brand">Janapath Model Secondary School
+          <div class="brand">Janapath Secondary School
           
           </div>
         </div>
         <nav>
           <a href="#">Home</a>
           <a href="#">About Us</a>
-          <a href="contactus.html">Contact Us</a>
+          <a href="#admissions">Enroll Now</a>
           <a href="#">Academics</a>
-          <a href="#">Admissions</a>
-          <a href="#">News & Events</a>
+          <a href="#admissions">Admissions</a>
+          <a href="notices.html">Notice</a>
+          <a href="notices.html">News & Events</a>
+          <a href="admin.html">Admin</a>
         </nav>
       </div>
     </header>
     
     <main>
       <marquee behavior="scroll" direction="left" class="announcement">
-        Welcome to Janapath Model Secondary School! Enroll now for the 2024-2025 academic year.Develop by Website Team.
+        Welcome to Janapath Secondary School! Enroll now for the 2026 academic year.
       </marquee>
       <div class="scroll">
         <div class="slides">
@@ -44,11 +46,78 @@
         
         <div class="slide-overlay">
           <img src="logo.jpg" alt="School logo">
-          <div class="overlay-text">Janapath Model Secondary School
+          <div class="overlay-text">Janapath Secondary School
               <div class="loc">Kalanki-14, Kathmandu, Nepal</div>
           </div>
         </div>
       </div>
+
+      <section id="notice" class="notice-preview" aria-labelledby="notice-heading">
+        <div class="notice-preview-head">
+          <h2 id="notice-heading">Notice Board</h2>
+          <a href="notices.html" class="notice-view-all">View all notices</a>
+        </div>
+        <div id="notice-preview-list" class="notice-preview-list"></div>
+      </section>
+
+      <section id="admissions" class="admission-section" aria-labelledby="admission-heading">
+        <div class="admission-layout">
+          <div class="admission-info">
+            <h2 id="admission-heading">Admission Application</h2>
+            <p id="admission-subtitle">Fill in the details below and we will get back to you promptly.</p>
+            <h3>How to fill this form</h3>
+            <ol id="admission-instructions">
+              <li>Use student full name and correct date of birth.</li>
+              <li>Select the grade you want to apply for.</li>
+              <li>Provide parent/guardian and contact details.</li>
+              <li>Add previous school and message if needed.</li>
+            </ol>
+            <h3>Required documents</h3>
+            <ul id="admission-requirements">
+              <li>Copy of birth certificate</li>
+              <li>Previous school report card</li>
+              <li>Passport-size photo</li>
+              <li>Parent/guardian citizenship copy</li>
+            </ul>
+          </div>
+
+          <form id="admission-form" class="admission-form" autocomplete="on">
+            <div class="field-grid">
+              <label>Student First Name *
+                <input type="text" name="firstName" placeholder="First name" required>
+              </label>
+              <label>Student Last Name *
+                <input type="text" name="lastName" placeholder="Last name" required>
+              </label>
+              <label>Date of Birth *
+                <input type="date" name="dob" required>
+              </label>
+              <label>Applying for Grade *
+                <select id="grade-select" name="grade" required>
+                  <option value="">Select grade</option>
+                </select>
+              </label>
+              <label>Parent / Guardian Name *
+                <input type="text" name="guardianName" placeholder="Full name" required>
+              </label>
+              <label>Contact Number *
+                <input type="tel" name="contactNumber" placeholder="Your contact number" required>
+              </label>
+            </div>
+            <label>Email Address
+              <input type="email" name="email" placeholder="Your email">
+            </label>
+            <label>Previous School (If Any)
+              <input type="text" name="previousSchool" placeholder="Name of last school attended">
+            </label>
+            <label>Message / Additional Info
+              <textarea name="message" rows="4" placeholder="Any special requirements, questions, or information you would like us to know..."></textarea>
+            </label>
+            <button type="submit" class="admission-submit">Submit Application</button>
+            <p id="admission-success" class="admission-success" hidden>Application submitted successfully.</p>
+          </form>
+        </div>
+      </section>
     </main>
     
     <footer>
@@ -62,9 +131,9 @@
               Contact Details<br />
               Phone No:<br />
               Address: Kalanki,Janapath Marg,Kathmandu Nepal<br />
-              Email:<ac janapath2012@gmail.com
+              Email: janapath2012@gmail.com
             </p>
-            <p>Copyright © 2026 Janapath Model Secondary School | <a href="#">Powered by Website Team</a></p>
+            <p>Copyright © 2026 Janapath Secondary School | <a href="#">Powered by Website Team</a></p>
         </div>
     </footer>
     <script>
@@ -82,5 +151,6 @@
       updateBusinessStatus();
       setInterval(updateBusinessStatus, 60000);
     </script>
+    <script src="site.js"></script>
 </body>
 </html>

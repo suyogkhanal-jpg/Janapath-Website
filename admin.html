@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Janapath Admin</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body">
+  <div class="admin-wrap login-wrap" id="login-wrap">
+    <section id="login-section" class="admin-card login-card" aria-labelledby="login-heading">
+      <div class="login-icon-wrap" aria-hidden="true">
+        <div class="login-icon">LOCK</div>
+      </div>
+      <h1 id="login-heading">Admin Login</h1>
+      <p class="admin-hint">Sign in to access the admin dashboard</p>
+      <form id="login-form" autocomplete="off">
+        <label for="email-input">Email</label>
+        <input type="email" id="email-input" name="email" value="admin@janapath.com" required>
+
+        <label for="password-input">Password</label>
+        <input type="password" id="password-input" name="password" placeholder="Enter your password" required>
+
+        <p id="login-error" class="login-error" hidden role="alert">Invalid email or password.</p>
+        <button type="submit" class="btn-primary">Sign In</button>
+      </form>
+      <p class="default-credentials">
+        Default credentials:<br>
+        admin@janapath.com<br>
+        admin1234
+      </p>
+      <p class="admin-back"><a href="index.html">Back to site</a></p>
+    </section>
+  </div>
+
+  <div class="admin-wrap dashboard-wrap" id="dashboard-wrap" hidden>
+    <section class="dashboard-shell">
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <h2>Janapath</h2>
+          <p>Admin Panel</p>
+        </div>
+        <nav class="sidebar-nav">
+          <button class="side-link active" type="button" data-view="dashboard-home">Dashboard</button>
+          <button class="side-link" type="button" data-view="hero-content">Hero Content</button>
+          <button class="side-link" type="button" data-view="notice-content">Notice Content</button>
+          <button class="side-link" type="button" data-view="enroll-forms">Enroll Forms</button>
+          <button class="side-link" type="button" data-view="menu-content">Menu Content</button>
+          <button class="side-link" type="button" data-view="home-about-content">Home/About Content</button>
+        </nav>
+        <button type="button" id="logout-btn" class="btn-logout">Logout</button>
+      </aside>
+
+      <main class="dashboard-main">
+        <header class="dashboard-topbar">
+          <h1>Admin Dashboard</h1>
+        </header>
+
+        <section class="view-panel active" id="dashboard-home">
+          <div class="card">
+            <h2>Welcome</h2>
+            <p>Use the left menu to manage hero content, admission forms, and navigation/menu content easily.</p>
+          </div>
+        </section>
+
+        <section class="view-panel" id="hero-content">
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <h2>Hero Content Management</h2>
+                <p>Manage homepage hero section content</p>
+              </div>
+            </div>
+            <form id="hero-form" class="inline-form">
+              <input id="hero-headline" name="headline" type="text" placeholder="Headline" required>
+              <input id="hero-subheadline" name="subheadline" type="text" placeholder="Sub headline" required>
+              <input id="hero-images" name="images" type="number" min="0" placeholder="Banner images count" required>
+              <input id="hero-stats" name="stats" type="number" min="0" placeholder="Stats count" required>
+              <button type="submit" class="btn-primary">Add Hero Content</button>
+            </form>
+            <p id="hero-status" class="muted"></p>
+            <div class="table-wrap">
+              <table id="hero-table">
+                <thead>
+                  <tr>
+                    <th>Headline</th>
+                    <th>Sub Headline</th>
+                    <th>Banner Images</th>
+                    <th>Stats Count</th>
+                    <th>Status</th>
+                    <th>Updated</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="hero-body">
+                  <tr><td colspan="7">No hero rows yet.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="view-panel" id="notice-content">
+          <div class="card">
+            <h2>Notice Content Management</h2>
+            <p>Add school notices here. Example: 5 days public holiday.</p>
+            <form id="notice-form" class="inline-form notice-form">
+              <input id="notice-title" name="title" type="text" placeholder="Notice title" required>
+              <input id="notice-type" name="type" type="text" placeholder="Type (Holiday, Exam, Event)" required>
+              <input id="notice-date" name="date" type="date" required>
+              <input id="notice-message" name="message" type="text" placeholder="Notice details" required>
+              <button type="submit" class="btn-primary">Add Notice</button>
+            </form>
+            <p id="notice-status" class="muted"></p>
+            <div class="table-wrap">
+              <table id="notice-table">
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Type</th>
+                    <th>Date</th>
+                    <th>Message</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="notice-body">
+                  <tr><td colspan="5">No notice rows yet.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="view-panel" id="enroll-forms">
+          <div class="card">
+            <h2>Admission Section Settings</h2>
+            <form id="settings-form">
+              <label for="setting-heading">Admission title</label>
+              <input id="setting-heading" name="heading" type="text" required>
+              <label for="setting-subtitle">Admission subtitle</label>
+              <textarea id="setting-subtitle" name="subtitle" rows="2" required></textarea>
+              <label for="setting-grades">Grade options (one per line)</label>
+              <textarea id="setting-grades" name="grades" rows="4" required></textarea>
+              <label for="setting-instructions">How to fill (one step per line)</label>
+              <textarea id="setting-instructions" name="instructions" rows="4" required></textarea>
+              <label for="setting-requirements">Required documents (one item per line)</label>
+              <textarea id="setting-requirements" name="requirements" rows="4" required></textarea>
+              <button type="submit" class="btn-primary">Save settings</button>
+              <p id="settings-status" class="muted"></p>
+            </form>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <h2>Admission submissions database</h2>
+              <button type="button" id="clear-submissions-btn" class="btn-secondary">Clear all</button>
+            </div>
+            <div class="table-wrap">
+              <table id="submissions-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Student</th>
+                    <th>Grade</th>
+                    <th>Contact</th>
+                    <th>Parent</th>
+                    <th>Message</th>
+                  </tr>
+                </thead>
+                <tbody id="submissions-body">
+                  <tr><td colspan="6">No submissions yet.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="view-panel" id="menu-content">
+          <div class="card">
+            <h2>Top Navigation Menu Management</h2>
+            <p>Add/Edit your menu items from the second image.</p>
+            <form id="menu-form" class="inline-form">
+              <input id="menu-label" name="label" type="text" placeholder="Menu label (e.g., Home)" required>
+              <input id="menu-url" name="url" type="text" placeholder="Menu link (e.g., # or /about.html)" required>
+              <button type="submit" class="btn-primary">Add Menu Item</button>
+            </form>
+            <p id="menu-status" class="muted"></p>
+            <div class="table-wrap">
+              <table id="menu-table">
+                <thead>
+                  <tr>
+                    <th>Label</th>
+                    <th>URL</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="menu-body">
+                  <tr><td colspan="3">No menu rows yet.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="view-panel" id="home-about-content">
+          <div class="card">
+            <h2>Home/About Content Management</h2>
+            <form id="content-form">
+              <label for="content-section">Section</label>
+              <select id="content-section" name="section" required>
+                <option value="home">Home</option>
+                <option value="about">About</option>
+              </select>
+              <label for="content-topic">Topic title</label>
+              <input id="content-topic" name="topic" type="text" placeholder="Example: Mission" required>
+              <label for="content-text">Topic description</label>
+              <textarea id="content-text" name="text" rows="3" placeholder="Write content..." required></textarea>
+              <button type="submit" class="btn-primary">Add topic</button>
+              <p id="content-status" class="muted"></p>
+            </form>
+
+            <div class="table-wrap">
+              <table id="content-table">
+                <thead>
+                  <tr>
+                    <th>Page</th>
+                    <th>Topic</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="content-body">
+                  <tr><td colspan="4">No content rows yet.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </main>
+    </section>
+  </div>
+  <script src="admin.js"></script>
+</body>
+</html>
