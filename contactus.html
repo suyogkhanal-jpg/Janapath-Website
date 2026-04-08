@@ -425,6 +425,16 @@
     transform: translateY(-5px) scale(1.1); /* Lifts and grows slightly on hover */
 }
 
+#captchaLabel {
+    display: block;
+    margin-top: 10px;
+    padding: 5px;
+    background: #fff4e5;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px dashed #e67e22;
+}
+
     </style>
 </head>
 <body>
@@ -448,8 +458,14 @@
                 <div class="form-group">
                     <label>Message</label>
                     <textarea rows="3" placeholder="Type your question here..." required></textarea>
+			<div class="form-group">
+    			<label id="captchaLabel" style="color: #e67e22; font-weight: bold;">Security Check: Loading...</label>
+   			 <div class="form-row">
+   			     <input type="number" id="captchaInput" placeholder="Enter the sum" required>
+ 				   </div>
+					</div>
                 </div>
-                <button class="send-btn" onclick="sendMessage()">Send Message</button>
+                <button class="send-btn" onclick="sendMessage(event)">Send Message</button>
             </form>
         </div>
     </div>
@@ -608,32 +624,57 @@
 </div>
 
   <script>
-  function sendMessage() {
+let captchaResult;
+
+// 1. Function to create a new math problem
+function generateCaptcha() {
+    let num1 = Math.floor(Math.random() * 10) + 1;
+    let num2 = Math.floor(Math.random() * 10) + 1;
+    captchaResult = num1 + num2;
+    document.getElementById('captchaLabel').innerText = `Security Check: ${num1} + ${num2} = ?`;
+}
+
+// 2. Generate the first problem when the page opens
+window.addEventListener('DOMContentLoaded', generateCaptcha);
+
+function sendMessage(event) {
+    event.preventDefault(); // STOPS PAGE REFRESH
+
     const name = document.querySelector('input[placeholder="Enter your full name"]').value;
     const contact = document.querySelector('input[placeholder="How can we reach you?"]').value;
     const message = document.querySelector('textarea').value;
+    const userAnswer = document.getElementById('captchaInput').value;
 
-    if(name.trim() !== "" && contact.trim() !== "" && message.trim() !== "") {
-        
-        // Set the user's name in the modal
-        document.getElementById('modalUserName').innerText = "Thank you, " + name + "!";
-        
-        // Show the modal
-        document.getElementById('customModal').classList.add('active');
-        
-        // Clear the form
-        document.querySelector('input[placeholder="Enter your full name"]').value = "";
-        document.querySelector('input[placeholder="How can we reach you?"]').value = "";
-        document.querySelector('textarea').value = "";
-        
-    } else {
-        alert("⚠️ Please fill in all fields.");
+    // --- VALIDATION LOGIC ---
+
+    // A. Check if empty
+    if (!name || !contact || !message || !userAnswer) {
+        alert("⚠️ Please fill in all fields including the security check.");
+        return;
     }
-}
 
-// Function to close the modal
-function closeModal() {
-    document.getElementById('customModal').classList.remove('active');
+    // B. Check the Math (Robot Test)
+    if (parseInt(userAnswer) !== captchaResult) {
+        alert("❌ Incorrect security answer. Please try again.");
+        generateCaptcha(); // Change the numbers so they can try again
+        document.getElementById('captchaInput').value = "";
+        return;
+    }
+
+    // C. Check Email/Phone format
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phonePattern = /^(97|98)\d{8}$/;
+    if (!emailPattern.test(contact) && !phonePattern.test(contact)) {
+        alert("❌ Please enter a valid Email or 10-digit Nepali Mobile Number.");
+        return;
+    }
+
+    // --- SUCCESS ---
+    document.getElementById('modalUserName').innerText = "Thank you, " + name + "!";
+    document.getElementById('customModal').classList.add('active');
+    
+    document.getElementById('inquiryForm').reset();
+    generateCaptcha(); // Refresh for next time
 }
 </script>
 <script>
@@ -660,13 +701,45 @@ function scrollToTop() {
         behavior: 'smooth'
     });
 }
+
+function filterStaff() {
+    const input = document.getElementById('staffSearch');
+    const filter = input.value.toLowerCase();
+    
+    // 1. Target every table in your directory
+    const tables = document.querySelectorAll('table');
+
+    tables.forEach(table => {
+        // Find the "card" that holds this specific table
+        const card = table.closest('.table-card');
+        
+        // Skip the inquiry form card if it exists
+        if (card && card.classList.contains('inquiry-card')) return;
+
+        const rows = table.querySelectorAll('tbody tr');
+        let hasVisibleRow = false;
+
+        rows.forEach(row => {
+            const text = row.textContent.toLowerCase();
+            if (text.includes(filter)) {
+                row.style.display = ""; // Show row
+                hasVisibleRow = true;
+            } else {
+                row.style.display = "none"; // Hide row
+            }
+        });
+
+        // 2. Hide or show the whole card based on search results
+        if (card) {
+            card.style.display = hasVisibleRow ? "block" : "none";
+        }
+    });
+}
+function closeModal() {
+    document.getElementById('customModal').classList.remove('active');
+}
 </script>
 <button id="scrollTopBtn" onclick="scrollToTop()" title="Go to top">↑</button>
 
-    <div id="customModal" class="modal-overlay">
-        ...
-    </div>
-
-</body>
 </body>
 </html>
