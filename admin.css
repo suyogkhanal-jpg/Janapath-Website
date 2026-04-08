@@ -358,9 +358,45 @@
   .sidebar {
     border-right: 0;
     border-bottom: 1px solid #e6dff1;
+    flex-direction: row;
+    overflow-x: auto;
+    min-height: auto;
+  }
+
+  .sidebar-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .sidebar-brand {
+    text-align: center;
+  }
+
+  .dashboard-main {
+    min-height: auto;
   }
 
   .inline-form {
     grid-template-columns: 1fr;
+  }
+
+  .btn-logout {
+    margin: 12px auto 16px;
+    width: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .side-link {
+    flex: 1 1 45%;
+    text-align: center;
+    padding: 10px 8px;
+  }
+
+  .sidebar-nav {
+    gap: 6px;
   }
 }

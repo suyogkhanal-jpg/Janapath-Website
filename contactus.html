@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Janapath School</title>
+  <link rel="stylesheet" href="style.css">
     <style>
         /* --- CSS STYLING --- */
         body {
@@ -425,9 +426,108 @@
     transform: translateY(-5px) scale(1.1); /* Lifts and grows slightly on hover */
 }
 
+    .form-row {
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+    }
+
+    .contact-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .action-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        color: #fff;
+        text-decoration: none;
+        background: #25d366;
+        transition: transform 0.2s ease;
+    }
+
+    .action-link:hover {
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 900px) {
+        .inquiry-container,
+        .container {
+            padding: 0 16px;
+        }
+
+        .table-card {
+            min-width: 100%;
+            padding: 18px;
+        }
+
+        .form-row {
+            flex-direction: column;
+        }
+
+        .contact-actions {
+            justify-content: flex-start;
+        }
+
+        .contact-actions a {
+            width: auto;
+            padding: 8px 10px;
+        }
+
+        .search-container {
+            position: static;
+            top: auto;
+            background: transparent;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .back-btn {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+        }
+    }
+
+    /* Mobile Optimization */
+    @media (max-width: 500px) {
+        .table-card { min-width: 100%; padding: 10px; }
+        table { font-size: 11px; }
+    }
+
     </style>
 </head>
 <body>
+    <header>
+      <div class="navbar">
+        <div class="logo">
+          <a href="index.html"><img src="logo.jpg" alt="Janapath Logo" /></a>
+          <div class="brand">Janapath Secondary School</div>
+        </div>
+        <nav>
+          <a href="index.html">Home</a>
+          <a href="#">About Us</a>
+          <a href="index.html#admissions">Enroll Now</a>
+          <a href="#">Academics</a>
+          <a href="contactus.html">Contact Us</a>
+          <a href="notices.html">Notice</a>
+          <a href="notices.html">News & Events</a>
+          <a href="admin.html">Admin</a>
+        </nav>
+      </div>
+    </header>
 
     <div class="inquiry-container">
         <div class="table-card inquiry-card">

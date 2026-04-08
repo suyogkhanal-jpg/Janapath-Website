@@ -1,3 +1,12 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+img, video, iframe, embed, object {
+    max-width: 100%;
+    height: auto;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -197,14 +206,13 @@ p1 {
 
 .slides {
     display: flex;
-    width: 300%;
+    width: 400%;
     height: 70%;
-    transition: smooth;
-    animation: slide 9s infinite;
+    animation: slide 16s ease-in-out infinite;
 }
 
 .slide {
-    width: 33.33%;
+    width: 25%;
     height: 100%;
     background-size: cover;
     background-position: center;
@@ -220,11 +228,13 @@ p1 {
 
 @keyframes slide {
     0% { transform: translateX(0); }
-    33% { transform: translateX(0); }
-    33.1% { transform: translateX(-33.33%); }
-    66% { transform: translateX(-33.33%); }
-    66.1% { transform: translateX(-66.66%); }
-    100% { transform: translateX(-66.66%); }
+    21% { transform: translateX(0); }
+    27% { transform: translateX(-25%); }
+    48% { transform: translateX(-25%); }
+    54% { transform: translateX(-50%); }
+    75% { transform: translateX(-50%); }
+    81% { transform: translateX(-75%); }
+    100% { transform: translateX(-75%); }
 }
 
 .contact-section {
@@ -451,20 +461,75 @@ p1 {
     font-weight: 700;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 1024px) {
     .navbar {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
+        gap: 12px;
+        padding: 14px 16px;
+    }
+
+    .logo {
+        width: 100%;
+        justify-content: flex-start;
     }
 
     nav {
         width: 100%;
         justify-content: center;
+        gap: 8px;
     }
 
     nav a {
-        padding-left: 16px;
-        padding-right: 16px;
+        padding: 10px 12px;
+        font-size: 0.95rem;
+    }
+
+    .scroll {
+        min-height: 320px;
+    }
+
+    .slide-overlay {
+        width: calc(100% - 36px);
+    }
+
+    footer {
+        height: auto;
+        padding: 28px 16px;
+        margin-top: 40px;
+    }
+}
+
+@media (max-width: 700px) {
+    .navbar {
+        align-items: flex-start;
+    }
+
+    .logo {
+        width: 100%;
+    }
+
+    nav a {
+        flex: 1 1 45%;
+        text-align: center;
+    }
+
+    .slide-overlay {
+        width: calc(100% - 32px);
+    }
+
+    .notice-preview-head,
+    .notice-item {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .notice-preview-head {
+        align-items: flex-start;
+    }
+
+    .notice-item {
+        text-align: left;
     }
 
     .admission-layout {
@@ -475,9 +540,37 @@ p1 {
     .field-grid {
         grid-template-columns: 1fr;
     }
+}
 
-    .notice-preview-head {
-        flex-direction: column;
-        align-items: flex-start;
+@media (max-width: 520px) {
+    .navbar {
+        padding: 14px 12px;
+    }
+
+    .logo img {
+        width: 48px;
+        height: 48px;
+    }
+
+    .logo .brand {
+        font-size: 1rem;
+    }
+
+    nav {
+        gap: 6px;
+    }
+
+    nav a {
+        padding: 10px;
+        font-size: 0.9rem;
+        flex: 1 1 100%;
+    }
+
+    .scroll {
+        min-height: 260px;
+    }
+
+    .admission-layout {
+        padding: 14px;
     }
 }
