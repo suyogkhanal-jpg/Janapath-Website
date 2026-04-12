@@ -47,6 +47,7 @@
           <button class="side-link" type="button" data-view="enroll-forms">Enroll Forms</button>
           <button class="side-link" type="button" data-view="menu-content">Menu Content</button>
           <button class="side-link" type="button" data-view="home-about-content">Home/About Content</button>
+          <button class="side-link" type="button" data-view="school-status">School Status</button>
         </nav>
         <button type="button" id="logout-btn" class="btn-logout">Logout</button>
       </aside>
@@ -234,6 +235,26 @@
                 </tbody>
               </table>
             </div>
+          </div>
+        </section>
+
+        <section class="view-panel" id="school-status">
+          <div class="card">
+            <h2>School Status Control</h2>
+            <p>Use this panel to open or close the school and schedule a closure date range.</p>
+            <form id="status-form">
+              <fieldset>
+                <legend>Current status</legend>
+                <label><input type="radio" name="schoolStatus" value="open"> Open Now</label>
+                <label><input type="radio" name="schoolStatus" value="closed"> Closed Now</label>
+              </fieldset>
+              <label for="closure-from">Closure start date</label>
+              <input id="closure-from" name="closedFrom" type="date">
+              <label for="closure-to">Closure end date</label>
+              <input id="closure-to" name="closedTo" type="date">
+              <button type="submit" class="btn-primary">Save status</button>
+              <p id="status-message" class="muted"></p>
+            </form>
           </div>
         </section>
       </main>

@@ -20,11 +20,9 @@
           <a href="#">About Us</a>
           <a href="#admissions">Enroll Now</a>
           <a href="#">Academics</a>
-          <a href="#">Admissions</a>
-          <a href="events&holiday.html">Events & Holiday</a>
           <a href="contactus.html">Contact Us</a>
           <a href="notices.html">Notice</a>
-          <a href="notices.html">News & Events</a>
+          <a href="events&holiday.html">Events</a>
           <a href="admin.html">Admin</a>
         </nav>
       </div>
@@ -39,6 +37,7 @@
           <a href="#" class="slide" style="background-image: url('school.jpg');"></a>
           <a href="#" class="slide" style="background-image: url('img2.jpeg');"></a>
           <a href="#" class="slide" style="background-image: url('img1.jpeg');"></a>
+          <a href="#" class="slide" style="background-image: url('img3.jpeg');"></a>
         </div>
         <div class="status-card">
             <div id="business-status" class="status-pill">OPEN NOW</div>
@@ -52,6 +51,37 @@
           </div>
         </div>
       </div>
+
+      <section id="about" class="about-section" aria-labelledby="about-heading">
+        <div class="about-grid">
+          <div class="about-image-wrapper">
+            <img src="school.jpg" alt="Janapath Secondary School building">
+          </div>
+          <div class="about-content">
+            <h2 id="about-heading">About Janapath Secondary School</h2>
+            <p>Janapath Secondary School is dedicated to nurturing each student with a balanced education that blends strong academics, supportive teachers, and meaningful community values.</p>
+            <p>Our school offers a safe, welcoming environment where learners are encouraged to explore, create, and grow into confident young leaders.</p>
+            <div class="about-highlights">
+              <div>
+                <h3>Our Strengths</h3>
+                <ul>
+                  <li>Experienced and caring faculty</li>
+                  <li>Modern classrooms and learning resources</li>
+                  <li>Academic support for all grades</li>
+                </ul>
+              </div>
+              <div>
+                <h3>School Values</h3>
+                <ul>
+                  <li>Respect and responsibility</li>
+                  <li>Teamwork and community</li>
+                  <li>Curiosity and creativity</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section id="notice" class="notice-preview" aria-labelledby="notice-heading">
         <div class="notice-preview-head">
@@ -140,14 +170,69 @@
     <script>
       const statusEl = document.getElementById('business-status');
       const hoursEl = document.querySelector('.status-hours');
+
+      function parseDate(value) {
+        if (!value) return null;
+        const date = new Date(value + 'T00:00:00');
+        return Number.isNaN(date.getTime()) ? null : date;
+      }
+
+      function formatClosureLabel(from, to) {
+        if (!from || !to) return 'Closed until further notice';
+        const start = new Date(from).toLocaleDateString();
+        const end = new Date(to).toLocaleDateString();
+        if (start === 'Invalid Date' || end === 'Invalid Date') return 'Closed until further notice';
+        return 'Closed ' + start + ' to ' + end;
+      }
+
+      function readSchoolStatus() {
+        try {
+          const raw = localStorage.getItem('janapath_school_status');
+          if (!raw) return { forceClosed: false, closedFrom: '', closedTo: '' };
+          const parsed = JSON.parse(raw);
+          return {
+            forceClosed: parsed.forceClosed === true,
+            closedFrom: String(parsed.closedFrom || ''),
+            closedTo: String(parsed.closedTo || '')
+          };
+        } catch (err) {
+          return { forceClosed: false, closedFrom: '', closedTo: '' };
+        }
+      }
+
+      function isWithinClosureRange(now, fromValue, toValue) {
+        const from = parseDate(fromValue);
+        const to = parseDate(toValue);
+        if (!from || !to) return false;
+        const endOfDay = new Date(to.getTime() + 24 * 60 * 60 * 1000 - 1);
+        return now >= from && now <= endOfDay;
+      }
+
       function updateBusinessStatus() {
         const now = new Date();
         const currentMinutes = now.getHours() * 60 + now.getMinutes();
         const openMinutes = 6 * 60;
         const closeMinutes = 17 * 60;
-        const isOpen = currentMinutes >= openMinutes && currentMinutes < closeMinutes;
-        statusEl.textContent = isOpen ? 'OPEN NOW' : 'CLOSED NOW (5:00 PM - 6:00 AM)';
-        hoursEl.textContent = isOpen ? '6:00 AM - 5:00 PM' : '5:00 PM - 6:00 AM';
+        const schoolStatus = readSchoolStatus();
+        const closedByRange = isWithinClosureRange(now, schoolStatus.closedFrom, schoolStatus.closedTo);
+        const isClosed = schoolStatus.forceClosed || closedByRange;
+        const withinOpenHours = currentMinutes >= openMinutes && currentMinutes < closeMinutes;
+        const isOpen = !isClosed && withinOpenHours;
+
+        statusEl.textContent = isOpen ? 'OPEN NOW' : 'CLOSED NOW';
+
+        if (isClosed) {
+          hoursEl.textContent = closedByRange
+            ? formatClosureLabel(schoolStatus.closedFrom, schoolStatus.closedTo)
+            : 'Closed until reopened by admin';
+        } else if (!withinOpenHours) {
+          hoursEl.textContent = '6:00 AM - 5:00 PM';
+        } else if (schoolStatus.closedFrom && schoolStatus.closedTo && parseDate(schoolStatus.closedFrom) > now) {
+          hoursEl.textContent = 'Open now • ' + formatClosureLabel(schoolStatus.closedFrom, schoolStatus.closedTo);
+        } else {
+          hoursEl.textContent = '6:00 AM - 5:00 PM';
+        }
+
         statusEl.classList.toggle('open', isOpen);
         statusEl.classList.toggle('closed', !isOpen);
       }

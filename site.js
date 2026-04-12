@@ -30,6 +30,49 @@
     }
   ];
 
+  const STATUS_KEY = "janapath_school_status";
+  const defaultSchoolStatus = {
+    forceClosed: false,
+    closedFrom: "",
+    closedTo: ""
+  };
+
+  function readSchoolStatus() {
+    try {
+      const raw = localStorage.getItem(STATUS_KEY);
+      if (!raw) return defaultSchoolStatus;
+      const parsed = JSON.parse(raw);
+      return {
+        forceClosed: parsed.forceClosed === true,
+        closedFrom: String(parsed.closedFrom || ""),
+        closedTo: String(parsed.closedTo || "")
+      };
+    } catch (err) {
+      return defaultSchoolStatus;
+    }
+  }
+
+  function parseDate(value) {
+    if (!value) return null;
+    const parsed = new Date(value + "T00:00:00");
+    return Number.isNaN(parsed.getTime()) ? null : parsed;
+  }
+
+  function formatClosureLabel(from, to) {
+    if (!from || !to) return "Closed until further notice";
+    const start = new Date(from).toLocaleDateString();
+    const end = new Date(to).toLocaleDateString();
+    if (start === "Invalid Date" || end === "Invalid Date") return "Closed until further notice";
+    return "Closed " + start + " to " + end;
+  }
+
+  function isWithinClosureRange(now, fromValue, toValue) {
+    const from = parseDate(fromValue);
+    const to = parseDate(toValue);
+    if (!from || !to) return false;
+    return now >= from && now <= new Date(to.getTime() + 24 * 60 * 60 * 1000 - 1);
+  }
+
   function readSettings() {
     try {
       const raw = localStorage.getItem(SETTINGS_KEY);

@@ -8,6 +8,12 @@
   const HERO_KEY = "janapath_hero_content";
   const MENU_KEY = "janapath_menu_content";
   const NOTICE_KEY = "janapath_notice_content";
+  const STATUS_KEY = "janapath_school_status";
+  const defaultStatus = {
+    forceClosed: false,
+    closedFrom: "",
+    closedTo: ""
+  };
   const defaultSettings = {
     heading: "Admission Application",
     subtitle: "Fill in the details below and we will get back to you promptly.",
@@ -172,6 +178,7 @@
     renderHeroRows();
     renderMenuRows();
     renderNoticeRows();
+    fillStatusForm();
     setupViews();
 
     const settingsForm = document.getElementById("settings-form");
@@ -343,6 +350,8 @@
       });
     }
 
+    initStatusTools();
+
     const noticeBody = document.getElementById("notice-body");
     if (noticeBody) {
       noticeBody.addEventListener("click", function (e) {
@@ -460,6 +469,55 @@
         );
       })
       .join("");
+  }
+
+  function readSchoolStatus() {
+    try {
+      const raw = localStorage.getItem(STATUS_KEY);
+      if (!raw) return defaultStatus;
+      const parsed = JSON.parse(raw);
+      return {
+        forceClosed: parsed.forceClosed === true,
+        closedFrom: String(parsed.closedFrom || ""),
+        closedTo: String(parsed.closedTo || "")
+      };
+    } catch (err) {
+      return defaultStatus;
+    }
+  }
+
+  function saveSchoolStatus(status) {
+    localStorage.setItem(STATUS_KEY, JSON.stringify(status));
+  }
+
+  function fillStatusForm() {
+    const status = readSchoolStatus();
+    const radioOpen = document.querySelector('input[name="schoolStatus"][value="open"]');
+    const radioClosed = document.querySelector('input[name="schoolStatus"][value="closed"]');
+    if (radioOpen) radioOpen.checked = !status.forceClosed;
+    if (radioClosed) radioClosed.checked = status.forceClosed;
+    const fromInput = document.getElementById("closure-from");
+    const toInput = document.getElementById("closure-to");
+    if (fromInput) fromInput.value = status.closedFrom;
+    if (toInput) toInput.value = status.closedTo;
+  }
+
+  function initStatusTools() {
+    const statusForm = document.getElementById("status-form");
+    if (!statusForm) return;
+
+    statusForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const data = new FormData(statusForm);
+      const nextStatus = {
+        forceClosed: String(data.get("schoolStatus")) === "closed",
+        closedFrom: String(data.get("closedFrom") || "").trim(),
+        closedTo: String(data.get("closedTo") || "").trim()
+      };
+      saveSchoolStatus(nextStatus);
+      const statusMessage = document.getElementById("status-message");
+      if (statusMessage) statusMessage.textContent = "School status saved.";
+    });
   }
 
   function setupViews() {
