@@ -12,8 +12,8 @@ export default function Hero() {
 
   const hero = content?.hero ?? {
     backgroundImageUrl: "/images/campus.jpg",
-    imageOpacity: 100,
-    overlayOpacity: 55,
+    imageOpacity: 30,
+    overlayOpacity: 35,
   };
   const stats = content?.heroStats ?? [
     { value: "1200+", label: "Students" },
@@ -58,10 +58,10 @@ export default function Hero() {
 
           <p className="text-xl sm:text-2xl text-white font-medium mb-4">
             {schoolInfo.slogan}
-          </p>
-          <p className="text-blue-1500 font-serif text-lg mb-10 max-w-2xl">
-            {schoolInfo.tagline}
-          </p>
+          </p> 
+          <p className="inline-block bg-red-700/80 text-white font-serif text-lg px-4 py-2 rounded-md shadow-lg mb-10">
+  {schoolInfo.tagline}
+</p>
 
           <div className="flex flex-wrap gap-4">
             <Link
@@ -99,14 +99,33 @@ export default function Hero() {
           className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-4"
         >
           {stats.map((stat) => (
-            <div
-              key={stat.label}
-              className="rounded-2xl bg-white/90 backdrop-blur-md border border-gray-200 p-5 text-center"
-            >
-              <p className="text-2xl sm:text-3xl font-bold text-black">{stat.value}</p>
-              <p className="text-sm text-gray-800 mt-1">{stat.label}</p>
-            </div>
-          ))}
+  <div
+    key={stat.label}
+    className="
+      rounded-3xl
+      bg-white/10
+      backdrop-blur-xl
+      border border-white/30
+      p-6
+      text-center
+      shadow-lg
+      hover:shadow-2xl
+      hover:-translate-y-2
+      transition-all
+      duration-300
+    "
+  >
+    <p className="text-3xl sm:text-4xl font-extrabold text-white">
+      {stat.value}
+    </p>
+
+    <div className="w-12 h-1 bg-gradient-to-r from-purple-500 to-green-400 mx-auto my-3 rounded-full"></div>
+
+    <p className="text-sm sm:text-base text-gray-200 font-medium tracking-wide">
+      {stat.label}
+    </p>
+  </div>
+))}
         </motion.div>
       </div>
     </section>
