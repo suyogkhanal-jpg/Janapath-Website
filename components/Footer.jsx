@@ -53,7 +53,7 @@ export default function Footer() {
           <div>
             <h3 className="font-display font-semibold text-white mb-4">Follow Us</h3>
             <div className="flex gap-3">
-              <a href="#" className="p-2 rounded-lg bg-gray-800 hover:bg-brand-600 transition-colors" aria-label="Facebook">
+              <a href="#https://www.facebook.com/janapathsecondaryschool" className="p-2 rounded-lg bg-gray-800 hover:bg-brand-600 transition-colors" aria-label="Facebook">
                 <Facebook className="h-5 w-5" />
               </a>
               <a href="#" className="p-2 rounded-lg bg-gray-800 hover:bg-brand-600 transition-colors" aria-label="YouTube">

@@ -16,8 +16,8 @@ export default function Hero() {
     overlayOpacity: 55,
   };
   const stats = content?.heroStats ?? [
-    { value: "500+", label: "Students" },
-    { value: "30+", label: "Teachers" },
+    { value: "1200+", label: "Students" },
+    { value: "35+", label: "Teachers" },
     { value: "12+", label: "Years" },
     { value: "95%", label: "Pass Rate" },
   ];
@@ -26,7 +26,7 @@ export default function Hero() {
   const overlayOpacity = (hero.overlayOpacity ?? 80) / 100;
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-brand-950 via-brand-900 to-accent-900 text-white">
+    <section className="relative overflow-hidden bg-gradient-to-br from-brand-950 via-brand-900 to-accent-900 text-gray-900">
       <div className="absolute inset-0" style={{ opacity: imageOpacity }}>
         <Image
           src={hero.backgroundImageUrl}
@@ -49,16 +49,17 @@ export default function Hero() {
           transition={{ duration: 0.7 }}
           className="max-w-3xl"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-sm font-medium mb-6">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-sm border border-gray-300 text-sm font-medium text-gray-900 mb-6">
             📍 {schoolInfo.location}
           </span>
-          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-white">
             {schoolInfo.name}
           </h1>
-          <p className="text-xl sm:text-2xl text-brand-100 font-medium mb-4">
+
+          <p className="text-xl sm:text-2xl text-white font-medium mb-4">
             {schoolInfo.slogan}
           </p>
-          <p className="text-brand-200/90 text-lg mb-10 max-w-2xl">
+          <p className="text-blue-1500 font-serif text-lg mb-10 max-w-2xl">
             {schoolInfo.tagline}
           </p>
 
@@ -74,7 +75,7 @@ export default function Hero() {
             <Link
               href="/contact"
               prefetch
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-white/10 backdrop-blur-sm border border-white/30 font-semibold hover:bg-white/20 transition-all"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-white/90 backdrop-blur-sm border border-gray-300 text-gray-900 font-semibold hover:bg-white transition-all"
             >
               <Phone className="h-5 w-5" />
               Contact Us
@@ -100,10 +101,10 @@ export default function Hero() {
           {stats.map((stat) => (
             <div
               key={stat.label}
-              className="rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 p-5 text-center"
+              className="rounded-2xl bg-white/90 backdrop-blur-md border border-gray-200 p-5 text-center"
             >
-              <p className="text-2xl sm:text-3xl font-bold">{stat.value}</p>
-              <p className="text-sm text-brand-200 mt-1">{stat.label}</p>
+              <p className="text-2xl sm:text-3xl font-bold text-black">{stat.value}</p>
+              <p className="text-sm text-gray-800 mt-1">{stat.label}</p>
             </div>
           ))}
         </motion.div>
