@@ -7,9 +7,11 @@
     "dev:clean": "node scripts/prepare-dev.js && node -e \"require('fs').rmSync('.next',{recursive:true,force:true})\" && next dev -p 3000",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:test": "node scripts/test-supabase.js"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.107.0",
     "bcryptjs": "^2.4.3",
     "framer-motion": "^11.18.2",
     "jsonwebtoken": "^9.0.2",
@@ -21,6 +23,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
+    "dotenv": "^17.4.2",
     "eslint": "^9.18.0",
     "eslint-config-next": "^15.1.6",
     "postcss": "^8.5.1",

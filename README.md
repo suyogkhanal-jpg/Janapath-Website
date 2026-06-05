@@ -9,7 +9,8 @@ Production-ready Next.js website for **Janapath Secondary School**, Kalanki-14, 
 - **Tailwind CSS**
 - **Framer Motion** (animations)
 - **Lucide React** (icons)
-- **MongoDB + Mongoose** (optional — falls back to in-memory store)
+- **Supabase** (PostgreSQL — primary database when configured)
+- **MongoDB + Mongoose** (optional legacy fallback — in-memory store if neither is set)
 - **JWT Auth** (admin panel)
 
 ## Quick Start
@@ -18,10 +19,16 @@ Production-ready Next.js website for **Janapath Secondary School**, Kalanki-14, 
 # 1. Install dependencies
 npm install
 
-# 2. Copy environment file
+# 2. Copy environment file and add Supabase credentials
 cp .env.example .env.local
 
-# 3. Start development server
+# 3. (First time) Run schema in Supabase SQL Editor if tables are missing
+#    File: supabase/schema.sql
+
+# 4. Test database connection
+npm run db:test
+
+# 5. Start development server
 npm run dev
 ```
 

@@ -1,4 +1,11 @@
-import { connectDB, isDBConfigured } from "@/lib/mongodb";
+import { connectDB, isMongoDBConfigured } from "@/lib/mongodb";
+import { isSupabaseConfigured } from "@/lib/supabase";
+import {
+  supabaseGetNotices,
+  supabaseCreateNotice,
+  supabaseUpdateNotice,
+  supabaseDeleteNotice,
+} from "@/lib/supabaseStore";
 import Notice from "@/models/Notice";
 import { apiSuccess, apiError, validateRequired } from "@/lib/api";
 import { verifyAdminRequest } from "@/lib/auth";
@@ -15,7 +22,16 @@ export async function GET(request) {
     const limit = parseInt(searchParams.get("limit") || "20", 10);
     const category = searchParams.get("category");
 
-    if (isDBConfigured()) {
+    if (isSupabaseConfigured()) {
+      try {
+        const notices = await supabaseGetNotices({ limit, category });
+        return apiSuccess(notices);
+      } catch {
+        // fall back
+      }
+    }
+
+    if (isMongoDBConfigured()) {
       try {
         await connectDB();
         const query = category ? { category } : {};
@@ -25,7 +41,7 @@ export async function GET(request) {
           .lean();
         return apiSuccess(notices);
       } catch {
-        // If MongoDB is configured but unavailable, fall back to in-memory data
+        // fall back
       }
     }
 
@@ -51,16 +67,28 @@ export async function POST(request) {
       content: body.content.trim(),
       category: body.category || "General",
       isPinned: Boolean(body.isPinned),
-      publishedAt: body.publishedAt ? new Date(body.publishedAt) : new Date(),
+      publishedAt: body.publishedAt ? new Date(body.publishedAt).toISOString() : new Date().toISOString(),
     };
 
-    if (isDBConfigured()) {
+    if (isSupabaseConfigured()) {
       try {
-        await connectDB();
-        const notice = await Notice.create(payload);
+        const notice = await supabaseCreateNotice(payload);
         return apiSuccess(notice, 201);
       } catch {
-        // fall back to in-memory store
+        // fall back
+      }
+    }
+
+    if (isMongoDBConfigured()) {
+      try {
+        await connectDB();
+        const notice = await Notice.create({
+          ...payload,
+          publishedAt: body.publishedAt ? new Date(body.publishedAt) : new Date(),
+        });
+        return apiSuccess(notice, 201);
+      } catch {
+        // fall back
       }
     }
 
@@ -84,14 +112,24 @@ export async function PUT(request) {
     if (body.category) updates.category = body.category;
     if (typeof body.isPinned === "boolean") updates.isPinned = body.isPinned;
 
-    if (isDBConfigured()) {
+    if (isSupabaseConfigured()) {
+      try {
+        const notice = await supabaseUpdateNotice(body.id, updates);
+        if (!notice) return apiError("Notice not found", 404);
+        return apiSuccess(notice);
+      } catch {
+        // fall back
+      }
+    }
+
+    if (isMongoDBConfigured()) {
       try {
         await connectDB();
         const notice = await Notice.findByIdAndUpdate(body.id, updates, { new: true });
         if (!notice) return apiError("Notice not found", 404);
         return apiSuccess(notice);
       } catch {
-        // fall back to in-memory store
+        // fall back
       }
     }
 
@@ -112,14 +150,24 @@ export async function DELETE(request) {
     const id = searchParams.get("id");
     if (!id) return apiError("Notice id is required");
 
-    if (isDBConfigured()) {
+    if (isSupabaseConfigured()) {
+      try {
+        await supabaseDeleteNotice(id);
+        return apiSuccess({ deleted: true });
+      } catch (err) {
+        if (err?.code === "PGRST116") return apiError("Notice not found", 404);
+        // fall back
+      }
+    }
+
+    if (isMongoDBConfigured()) {
       try {
         await connectDB();
         const result = await Notice.findByIdAndDelete(id);
         if (!result) return apiError("Notice not found", 404);
         return apiSuccess({ deleted: true });
       } catch {
-        // fall back to in-memory store
+        // fall back
       }
     }
 

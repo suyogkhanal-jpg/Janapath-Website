@@ -52,8 +52,22 @@ function rmDir(relPath) {
 
 freePort(DEV_PORT);
 
-// Corrupted packs cause "incorrect header check" and HMR not updating (see dev terminal warnings).
-rmDir(".next/cache/webpack");
-rmDir(".next/cache/eslint");
+const nextDir = path.join(ROOT, ".next");
+const routesManifest = path.join(nextDir, "routes-manifest.json");
+const buildManifest = path.join(nextDir, "BUILD_ID");
+
+// Dev server crashes with "Internal Server Error" if .next was deleted/rebuilt
+// while `next dev` was still running (e.g. after `npm run build`).
+if (fs.existsSync(nextDir)) {
+  const isProductionBuild = fs.existsSync(buildManifest);
+  const isDevReady = fs.existsSync(routesManifest);
+  if (isProductionBuild || !isDevReady) {
+    fs.rmSync(nextDir, { recursive: true, force: true });
+    console.log("[dev] Cleared .next (stale or production build artifacts)");
+  } else {
+    rmDir(".next/cache/webpack");
+    rmDir(".next/cache/eslint");
+  }
+}
 
 console.log(`[dev] Starting Next.js at http://localhost:${DEV_PORT}`);

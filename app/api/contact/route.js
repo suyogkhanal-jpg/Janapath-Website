@@ -1,4 +1,6 @@
-import { connectDB, isDBConfigured } from "@/lib/mongodb";
+import { connectDB, isMongoDBConfigured } from "@/lib/mongodb";
+import { isSupabaseConfigured } from "@/lib/supabase";
+import { supabaseGetContacts, supabaseCreateContact } from "@/lib/supabaseStore";
 import Contact from "@/models/Contact";
 import { apiSuccess, apiError, validateRequired, validateEmail } from "@/lib/api";
 import { verifyAdminRequest } from "@/lib/auth";
@@ -9,13 +11,22 @@ export async function GET(request) {
   if (!admin) return apiError("Unauthorized", 401);
 
   try {
-    if (isDBConfigured()) {
+    if (isSupabaseConfigured()) {
+      try {
+        const contacts = await supabaseGetContacts(50);
+        return apiSuccess(contacts);
+      } catch {
+        // fall back
+      }
+    }
+
+    if (isMongoDBConfigured()) {
       try {
         await connectDB();
         const contacts = await Contact.find().sort({ createdAt: -1 }).limit(50).lean();
         return apiSuccess(contacts);
       } catch {
-        // fall back when MongoDB is unavailable
+        // fall back
       }
     }
     return apiSuccess([]);
@@ -43,13 +54,22 @@ export async function POST(request) {
       return apiError("Message must be at least 10 characters");
     }
 
-    if (isDBConfigured()) {
+    if (isSupabaseConfigured()) {
+      try {
+        const contact = await supabaseCreateContact(payload);
+        return apiSuccess(contact, 201);
+      } catch {
+        // fall back
+      }
+    }
+
+    if (isMongoDBConfigured()) {
       try {
         await connectDB();
         const contact = await Contact.create(payload);
         return apiSuccess(contact, 201);
       } catch {
-        // fall back to in-memory store
+        // fall back
       }
     }
 
