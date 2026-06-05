@@ -37,19 +37,19 @@ export default function GalleryPage() {
   const paginated = filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
 
   return (
-    <div className="pt-8 pb-20">
-      <section className="bg-gradient-to-br from-brand-700 to-accent-700 text-white py-16">
+    <div className="pb-16 sm:pb-20">
+      <section className="page-header">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <div className="flex items-center gap-3 mb-4">
-            <Images className="h-10 w-10" />
-            <h1 className="font-display text-4xl sm:text-5xl font-bold">Photo Gallery</h1>
+          <div className="flex items-center gap-3 mb-3 sm:mb-4">
+            <Images className="h-8 w-8 sm:h-10 sm:w-10 text-accent-400 shrink-0" />
+            <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold">Photo Gallery</h1>
           </div>
-          <p className="text-brand-100 text-lg">Explore life at Janapath Secondary School.</p>
+          <p className="page-header-subtitle">Explore life at Janapath Secondary School.</p>
         </div>
       </section>
 
-      <div className="mx-auto max-w-7xl px-4 lg:px-8 py-12">
-        <div className="flex flex-wrap gap-2 mb-8">
+      <div className="mx-auto max-w-7xl px-4 lg:px-8 py-10 sm:py-12">
+        <div className="flex gap-2 overflow-x-auto pb-1 mb-6 sm:mb-8 scrollbar-thin">
           {categories.map((cat) => (
             <button
               key={cat}
@@ -57,10 +57,10 @@ export default function GalleryPage() {
                 setFilter(cat);
                 setPage(1);
               }}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+              className={`px-3 sm:px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap shrink-0 transition-colors ${
                 filter === cat
-                  ? "bg-brand-600 text-white"
-                  : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
+                  ? "bg-brand-700 text-white shadow-brand"
+                  : "bg-white dark:bg-brand-900 border border-brand-200 dark:border-brand-700 text-brand-800 dark:text-brand-200"
               }`}
             >
               {cat}
@@ -69,19 +69,19 @@ export default function GalleryPage() {
         </div>
 
         {loading ? (
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
             {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="aspect-square rounded-2xl bg-gray-200 dark:bg-gray-800 animate-pulse" />
+              <div key={i} className="aspect-square rounded-2xl bg-brand-100 dark:bg-brand-900 animate-pulse" />
             ))}
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
               {paginated.map((item) => (
                 <button
                   key={item._id}
                   onClick={() => setLightbox(item)}
-                  className="relative aspect-square rounded-2xl overflow-hidden group focus:outline-none focus:ring-2 focus:ring-brand-500"
+                  className="relative aspect-square rounded-2xl overflow-hidden group ring-1 ring-brand-100 dark:ring-brand-800 focus:outline-none focus:ring-2 focus:ring-brand-500"
                 >
                   <Image
                     src={item.imageUrl}

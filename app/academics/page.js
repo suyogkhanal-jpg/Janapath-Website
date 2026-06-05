@@ -14,29 +14,29 @@ export const metadata = {
 
 export default function AcademicsPage() {
   return (
-    <div className="pt-8 pb-20">
-      <section className="bg-gradient-to-br from-brand-700 to-accent-700 text-white py-16">
+    <div className="pb-16 sm:pb-20">
+      <section className="page-header">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <h1 className="font-display text-4xl sm:text-5xl font-bold mb-4">Academics</h1>
-          <p className="text-brand-100 text-lg max-w-2xl">
+          <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">Academics</h1>
+          <p className="page-header-subtitle">
             Comprehensive education from early childhood to secondary level, with a specialized Computer Engineering technical stream.
           </p>
         </div>
       </section>
 
-      <div className="mx-auto max-w-7xl px-4 lg:px-8 py-16 space-y-20">
+      <div className="mx-auto max-w-7xl px-4 lg:px-8 py-12 sm:py-16 space-y-16 sm:space-y-20">
         <section>
           <div className="flex items-center gap-3 mb-8">
-            <BookOpen className="h-8 w-8 text-brand-600" />
-            <h2 className="font-display text-2xl font-bold text-gray-900 dark:text-white">Classes Offered</h2>
+            <BookOpen className="h-7 w-7 sm:h-8 sm:w-8 text-brand-700" />
+            <h2 className="font-display text-xl sm:text-2xl font-bold text-brand-900 dark:text-white">Classes Offered</h2>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {classesOffered.map((cls) => (
               <div
                 key={cls.grade}
-                className="p-6 rounded-2xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 hover:border-brand-300 dark:hover:border-brand-700 transition-colors"
+                className="card-hover p-5 sm:p-6"
               >
-                <h3 className="font-display font-semibold text-lg text-brand-700 dark:text-brand-400 mb-3">
+                <h3 className="font-display font-semibold text-base sm:text-lg text-brand-800 dark:text-brand-300 mb-3">
                   {cls.grade}
                 </h3>
                 <ul className="space-y-1">
@@ -53,14 +53,14 @@ export default function AcademicsPage() {
         </section>
 
         <section id="computer-engineering" className="scroll-mt-24">
-          <div className="rounded-3xl overflow-hidden border border-gray-200 dark:border-gray-800">
-            <div className="bg-gradient-to-r from-brand-800 to-accent-800 p-8 lg:p-12 text-white">
-              <Cpu className="h-12 w-12 mb-4" />
-              <h2 className="font-display text-3xl font-bold mb-3">{computerEngineering.title}</h2>
-              <p className="text-brand-100 max-w-3xl leading-relaxed">{computerEngineering.description}</p>
+          <div className="rounded-3xl overflow-hidden border border-brand-200 dark:border-brand-800 shadow-brand-lg">
+            <div className="bg-gradient-to-br from-brand-800 via-brand-700 to-brand-900 p-6 sm:p-8 lg:p-12 text-white border-b-4 border-accent-600">
+              <Cpu className="h-10 w-10 sm:h-12 sm:w-12 mb-4 text-accent-300" />
+              <h2 className="font-display text-2xl sm:text-3xl font-bold mb-3">{computerEngineering.title}</h2>
+              <p className="text-brand-100 max-w-3xl leading-relaxed text-sm sm:text-base">{computerEngineering.description}</p>
               <p className="mt-4 text-sm font-medium text-brand-200">Duration: {computerEngineering.duration}</p>
             </div>
-            <div className="p-8 lg:p-12 bg-white dark:bg-gray-900 grid lg:grid-cols-2 gap-10">
+            <div className="p-6 sm:p-8 lg:p-12 bg-white dark:bg-brand-950/30 grid lg:grid-cols-2 gap-8 lg:gap-10">
               <div>
                 <h3 className="font-display font-semibold text-xl mb-4 text-gray-900 dark:text-white">Subjects</h3>
                 <ul className="grid sm:grid-cols-2 gap-2">
@@ -77,7 +77,7 @@ export default function AcademicsPage() {
                 <ul className="space-y-2">
                   {computerEngineering.outcomes.map((o) => (
                     <li key={o} className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
-                      <CheckCircle className="h-4 w-4 text-accent-500 mt-0.5 shrink-0" />
+                      <CheckCircle className="h-4 w-4 text-accent-600 mt-0.5 shrink-0" />
                       {o}
                     </li>
                   ))}
@@ -96,7 +96,7 @@ export default function AcademicsPage() {
           <div className="mt-8 text-center">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-brand-600 to-accent-600 text-white font-semibold hover:scale-105 transition-transform shadow-lg"
+              className="btn-accent px-8"
             >
               Apply for Computer Engineering <ArrowRight className="h-5 w-5" />
             </Link>
@@ -104,8 +104,8 @@ export default function AcademicsPage() {
         </section>
 
         <section>
-          <h2 className="font-display text-2xl font-bold mb-8 text-gray-900 dark:text-white">Curriculum Overview</h2>
-          <div className="grid md:grid-cols-3 gap-6">
+          <h2 className="font-display text-xl sm:text-2xl font-bold mb-6 sm:mb-8 text-brand-900 dark:text-white">Curriculum Overview</h2>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
             {curriculumOverview.map((block) => (
               <div
                 key={block.title}

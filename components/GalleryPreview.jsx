@@ -19,57 +19,64 @@ export default function GalleryPreview({ limit = 4 }) {
   }, [limit]);
 
   return (
-    <section className="py-20 bg-gray-50 dark:bg-gray-900/50">
+    <section className="section-padding section-alt">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <div className="flex items-end justify-between mb-10">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 sm:mb-10">
           <div>
-            <div className="flex items-center gap-2 text-brand-600 dark:text-brand-400 mb-2">
-              <Images className="h-5 w-5" />
-              <span className="text-sm font-semibold uppercase tracking-wider">Gallery</span>
+            <div className="section-label">
+              <Images className="h-4 w-4 sm:h-5 sm:w-5" />
+              <span className="section-label-text">Gallery</span>
             </div>
-            <h2 className="font-display text-3xl font-bold text-gray-900 dark:text-white">
+            <h2 className="section-title">
               Life at Janapath
             </h2>
           </div>
           <Link
             href="/gallery"
-            className="hidden sm:inline-flex items-center gap-1 text-brand-600 font-semibold hover:gap-2 transition-all"
+            className="hidden sm:inline-flex items-center gap-1 text-brand-700 font-semibold hover:text-accent-600 hover:gap-2 transition-all text-sm"
           >
             View Gallery <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
 
         {loading ? (
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="aspect-square rounded-2xl bg-gray-200 dark:bg-gray-800 animate-pulse" />
+              <div key={i} className="aspect-square rounded-2xl bg-brand-100 dark:bg-brand-900 animate-pulse" />
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {items.map((item, i) => (
               <div
                 key={item._id}
-                className={`relative overflow-hidden rounded-2xl group ${
-                  i === 0 ? "col-span-2 row-span-2 aspect-square lg:aspect-auto lg:min-h-[400px]" : "aspect-square"
+                className={`relative overflow-hidden rounded-2xl group ring-1 ring-brand-100 dark:ring-brand-800 ${
+                  i === 0 ? "col-span-2 row-span-2 aspect-square lg:aspect-auto lg:min-h-[360px]" : "aspect-square"
                 }`}
               >
                 <Image
                   src={item.imageUrl}
                   alt={item.title}
                   fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
                   sizes="(max-width: 768px) 50vw, 25vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform">
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                   <p className="text-white font-semibold text-sm">{item.title}</p>
-                  <p className="text-white/70 text-xs">{item.category}</p>
+                  <p className="text-brand-200 text-xs">{item.category}</p>
                 </div>
               </div>
             ))}
           </div>
         )}
+
+        <Link
+          href="/gallery"
+          className="sm:hidden mt-6 inline-flex items-center gap-1 text-brand-700 font-semibold text-sm"
+        >
+          View Gallery <ArrowRight className="h-4 w-4" />
+        </Link>
       </div>
     </section>
   );

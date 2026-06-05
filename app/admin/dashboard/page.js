@@ -467,7 +467,7 @@ export default function AdminDashboard() {
                   }}
                   rows={4}
                   className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 outline-none focus:ring-2 focus:ring-brand-500"
-                  placeholder="500+|Students (one per line)"
+                  placeholder="1200+|Students (one per line)"
                 />
                 <p className="text-xs text-gray-500">Format: <code>Value|Label</code> (e.g. <code>500+|Students</code>)</p>
               </div>

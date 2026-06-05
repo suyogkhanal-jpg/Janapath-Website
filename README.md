@@ -1,6 +1,6 @@
 # Janapath Secondary School — Official Website
 
-Production-ready Next.js website for **Janapath Secondary School**, Kalanki-4, Kathmandu, Nepal.
+Production-ready Next.js website for **Janapath Secondary School**, Kalanki-14, Kathmandu, Nepal.
 
 ## Tech Stack
 

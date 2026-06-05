@@ -18,18 +18,18 @@ const iconMap = {
 
 export default function Highlights() {
   return (
-    <section className="py-20 bg-gray-50 dark:bg-gray-900/50">
+    <section className="section-padding section-alt">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <div className="text-center mb-14">
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        <div className="text-center mb-10 sm:mb-14">
+          <h2 className="section-title mb-3 sm:mb-4">
             Why Choose Janapath?
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="section-desc">
             A perfect blend of academic excellence and technical education in the heart of Kathmandu.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {highlights.map((item, i) => {
             const Icon = iconMap[item.icon];
             return (
@@ -39,12 +39,12 @@ export default function Highlights() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="group p-6 rounded-2xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-xl hover:border-brand-300 dark:hover:border-brand-700 transition-all duration-300"
+                className="card-accent-top p-5 sm:p-6 group"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-accent-500 text-white mb-4 group-hover:scale-110 transition-transform">
-                  <Icon className="h-6 w-6" />
+                <div className="flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-xl bg-brand-700 text-white mb-4 group-hover:bg-accent-600 transition-colors duration-300 shadow-brand">
+                  <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
                 </div>
-                <h3 className="font-display font-semibold text-lg text-gray-900 dark:text-white mb-2">
+                <h3 className="font-display font-semibold text-base sm:text-lg text-brand-900 dark:text-white mb-2">
                   {item.title}
                 </h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">

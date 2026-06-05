@@ -11,10 +11,10 @@ export default function AnnouncementTicker({ messages = defaultMessages }) {
   const doubled = [...messages, ...messages];
 
   return (
-    <div className="bg-gradient-to-r from-brand-700 via-brand-600 to-accent-600 text-white overflow-hidden">
-      <div className="flex animate-ticker whitespace-nowrap py-2.5">
+    <div className="bg-gradient-to-r from-brand-800 via-brand-700 to-brand-800 text-white overflow-hidden border-b-2 border-accent-600">
+      <div className="flex animate-ticker whitespace-nowrap py-2 sm:py-2.5">
         {doubled.map((msg, i) => (
-          <span key={i} className="mx-8 text-sm font-medium">
+          <span key={i} className="mx-6 sm:mx-8 text-xs sm:text-sm font-medium tracking-wide">
             {msg} &nbsp;•&nbsp;
           </span>
         ))}

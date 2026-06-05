@@ -23,7 +23,7 @@ export const metadata = {
     template: `%s | ${schoolInfo.name}`,
   },
   description:
-    "Janapath Secondary School in Kalanki-4, Kathmandu offers quality education and Computer Engineering technical program. Apply now for 2026 admissions.",
+    "Janapath Secondary School in Kalanki-14, Kathmandu offers quality education and Computer Engineering technical program. Apply now for 2026 admissions.",
   keywords: [
     "Janapath Secondary School",
     "school Kathmandu",

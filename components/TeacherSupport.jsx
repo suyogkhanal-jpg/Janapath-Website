@@ -39,20 +39,20 @@ export default function TeacherSupport() {
   }, [group]);
 
   return (
-    <section className="bg-gray-50 dark:bg-gray-900/40 border-y border-gray-200 dark:border-gray-800">
-      <div className="mx-auto max-w-7xl px-4 lg:px-8 py-16">
-        <div className="text-center mb-10">
-          <h2 className="font-display text-3xl font-bold text-gray-900 dark:text-white mb-2">
+    <section className="section-alt border-y border-brand-100 dark:border-brand-800">
+      <div className="mx-auto max-w-7xl px-4 lg:px-8 py-12 sm:py-16">
+        <div className="text-center mb-8 sm:mb-10">
+          <h2 className="section-title mb-2">
             Contact Teachers
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="section-desc">
             Reach out to our teachers and staff directly for academic support. Tap WhatsApp to start a chat.
           </p>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 mb-8">
-          <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+        <div className="flex flex-col gap-4 mb-6 sm:mb-8">
+          <div className="relative w-full">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-brand-400" />
             <input
               type="search"
               placeholder="Search by name, role, or phone..."
@@ -61,10 +61,10 @@ export default function TeacherSupport() {
                 setSearch(e.target.value);
                 setPage(1);
               }}
-              className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:ring-2 focus:ring-brand-500 outline-none"
+              className="input-field pl-10"
             />
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-thin -mx-1 px-1">
             {groups.map((g) => (
               <button
                 key={g}
@@ -73,10 +73,10 @@ export default function TeacherSupport() {
                   setGroup(g);
                   setPage(1);
                 }}
-                className={`px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
+                className={`px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap shrink-0 transition-colors duration-200 ${
                   group === g
-                    ? "bg-brand-600 text-white"
-                    : "bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300"
+                    ? "bg-brand-700 text-white shadow-brand"
+                    : "bg-white dark:bg-brand-900 border border-brand-200 dark:border-brand-700 text-brand-800 dark:text-brand-200 hover:border-brand-400"
                 }`}
               >
                 {g}
@@ -85,18 +85,18 @@ export default function TeacherSupport() {
           </div>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {paginated.map((teacher) => (
             <div
               key={`${teacher.name}-${teacher.phone}`}
-              className="p-5 rounded-2xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-md transition-shadow"
+              className="card-hover p-4 sm:p-5"
             >
-              <p className="font-semibold text-gray-900 dark:text-white">{teacher.name}</p>
-              <p className="text-sm text-brand-600 dark:text-brand-400 mt-0.5">{teacher.designation}</p>
-              <p className="text-xs text-gray-500 mt-1">{teacher.group}</p>
+              <p className="font-semibold text-brand-900 dark:text-white text-sm sm:text-base">{teacher.name}</p>
+              <p className="text-sm text-brand-700 dark:text-brand-300 mt-0.5 font-medium">{teacher.designation}</p>
+              <p className="text-xs text-brand-400 mt-1">{teacher.group}</p>
               <a
                 href={`tel:${teacher.phone}`}
-                className="inline-flex items-center gap-1.5 mt-3 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600"
+                className="inline-flex items-center gap-1.5 mt-3 text-sm font-medium text-brand-700 dark:text-brand-300 hover:text-accent-600 transition-colors"
               >
                 <Phone className="h-4 w-4" />
                 {teacher.phone}
@@ -105,7 +105,7 @@ export default function TeacherSupport() {
                 href={whatsappUrl(teacher.phone)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl bg-[#25D366] text-white font-semibold text-sm hover:bg-[#20bd5a] transition-colors"
+                className="mt-3 sm:mt-4 flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl bg-[#25D366] text-white font-semibold text-sm hover:bg-[#20bd5a] transition-colors shadow-sm"
               >
                 <MessageCircle className="h-4 w-4" />
                 WhatsApp
@@ -115,7 +115,7 @@ export default function TeacherSupport() {
         </div>
 
         {filtered.length === 0 && (
-          <p className="text-center text-gray-500 py-12">No teachers match your search.</p>
+          <p className="text-center text-brand-400 py-12">No teachers match your search.</p>
         )}
 
         <Pagination page={safePage} totalPages={totalPages} onPageChange={setPage} />

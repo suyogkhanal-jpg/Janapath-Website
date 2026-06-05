@@ -12,8 +12,8 @@ export default function Hero() {
 
   const hero = content?.hero ?? {
     backgroundImageUrl: "/images/campus.jpg",
-    imageOpacity: 30,
-    overlayOpacity: 35,
+    imageOpacity: 100,
+    overlayOpacity: 55,
   };
   const stats = content?.heroStats ?? [
     { value: "1200+", label: "Students" },
@@ -26,7 +26,7 @@ export default function Hero() {
   const overlayOpacity = (hero.overlayOpacity ?? 80) / 100;
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-brand-950 via-brand-900 to-accent-900 text-gray-900">
+    <section className="relative overflow-hidden bg-brand-900">
       <div className="absolute inset-0" style={{ opacity: imageOpacity }}>
         <Image
           src={hero.backgroundImageUrl}
@@ -38,36 +38,36 @@ export default function Hero() {
         />
       </div>
       <div
-        className="absolute inset-0 bg-gradient-to-t from-brand-950 to-transparent"
+        className="absolute inset-0 bg-gradient-to-t from-brand-950/90 via-brand-900/40 to-brand-800/20"
         style={{ opacity: overlayOpacity }}
       />
 
-      <div className="relative mx-auto max-w-7xl px-4 py-24 lg:px-8 lg:py-32">
+      <div className="relative mx-auto max-w-7xl px-4 py-16 sm:py-20 lg:px-8 lg:py-28">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           className="max-w-3xl"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-sm border border-gray-300 text-sm font-medium text-gray-900 mb-6">
+          <span className="inline-block px-3 sm:px-4 py-1.5 rounded-full bg-white/95 backdrop-blur-sm border border-brand-200 text-xs sm:text-sm font-medium text-brand-800 mb-5 sm:mb-6 shadow-sm">
             📍 {schoolInfo.location}
           </span>
-          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-white">
+          <h1 className="font-display text-3xl min-[400px]:text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.15] mb-4 sm:mb-6 text-white drop-shadow-sm">
             {schoolInfo.name}
           </h1>
 
-          <p className="text-xl sm:text-2xl text-white font-medium mb-4">
+          <p className="text-lg sm:text-xl lg:text-2xl text-white/95 font-medium mb-3 sm:mb-4 leading-snug">
             {schoolInfo.slogan}
-          </p> 
-          <p className="inline-block bg-red-700/80 text-white font-serif text-lg px-4 py-2 rounded-md shadow-lg mb-10">
-  {schoolInfo.tagline}
-</p>
+          </p>
+          <p className="text-brand-100 text-base sm:text-lg mb-8 sm:mb-10 max-w-2xl leading-relaxed">
+            {schoolInfo.tagline}
+          </p>
 
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-col min-[400px]:flex-row flex-wrap gap-3 sm:gap-4">
             <Link
               href="/academics#computer-engineering"
               prefetch
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-white text-brand-800 font-semibold shadow-xl hover:shadow-2xl hover:scale-105 transition-all"
+              className="btn-primary w-full min-[400px]:w-auto justify-center"
             >
               <Cpu className="h-5 w-5" />
               Explore Courses
@@ -75,7 +75,7 @@ export default function Hero() {
             <Link
               href="/contact"
               prefetch
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-white/90 backdrop-blur-sm border border-gray-300 text-gray-900 font-semibold hover:bg-white transition-all"
+              className="btn-outline w-full min-[400px]:w-auto justify-center"
             >
               <Phone className="h-5 w-5" />
               Contact Us
@@ -83,7 +83,7 @@ export default function Hero() {
             <Link
               href="/notices"
               prefetch
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-accent-600 font-semibold hover:bg-accent-500 transition-all"
+              className="btn-accent w-full min-[400px]:w-auto justify-center"
             >
               <BookOpen className="h-5 w-5" />
               Latest Notices
@@ -96,36 +96,17 @@ export default function Hero() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-4"
+          className="mt-12 sm:mt-16 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4"
         >
           {stats.map((stat) => (
-  <div
-    key={stat.label}
-    className="
-      rounded-3xl
-      bg-white/10
-      backdrop-blur-xl
-      border border-white/30
-      p-6
-      text-center
-      shadow-lg
-      hover:shadow-2xl
-      hover:-translate-y-2
-      transition-all
-      duration-300
-    "
-  >
-    <p className="text-3xl sm:text-4xl font-extrabold text-white">
-      {stat.value}
-    </p>
-
-    <div className="w-12 h-1 bg-gradient-to-r from-purple-500 to-green-400 mx-auto my-3 rounded-full"></div>
-
-    <p className="text-sm sm:text-base text-gray-200 font-medium tracking-wide">
-      {stat.label}
-    </p>
-  </div>
-))}
+            <div
+              key={stat.label}
+              className="rounded-2xl bg-white/95 backdrop-blur-md border border-brand-100 border-t-[3px] border-t-accent-600 p-4 sm:p-5 text-center shadow-card"
+            >
+              <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-brand-800">{stat.value}</p>
+              <p className="text-xs sm:text-sm text-brand-600/80 mt-1 font-medium">{stat.label}</p>
+            </div>
+          ))}
         </motion.div>
       </div>
     </section>

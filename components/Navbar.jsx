@@ -20,7 +20,7 @@ export default function Navbar() {
   const logoUrl = content?.logoUrl || "/logo.png";
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 16);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -34,17 +34,24 @@ export default function Navbar() {
     router.prefetch("/academics");
   }, [router]);
 
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/90 dark:bg-gray-950/90 backdrop-blur-lg shadow-lg shadow-brand-900/5"
-          : "bg-transparent"
+      className={`sticky top-0 z-50 transition-all duration-300 border-b ${
+        scrolled || open
+          ? "bg-white/95 dark:bg-brand-950/95 backdrop-blur-md shadow-brand border-brand-100 dark:border-brand-800"
+          : "bg-white/90 dark:bg-brand-950/90 backdrop-blur-sm border-transparent"
       }`}
     >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 lg:px-8">
-        <Link href="/" prefetch className="flex items-center gap-3 group">
-          <div className="relative h-11 w-11 shrink-0">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:py-4 lg:px-8">
+        <Link href="/" prefetch className="flex items-center gap-2.5 sm:gap-3 group min-w-0">
+          <div className="relative h-10 w-10 sm:h-11 sm:w-11 shrink-0">
             <Image
               src={logoUrl}
               alt={`${schoolInfo.name} logo`}
@@ -54,24 +61,26 @@ export default function Navbar() {
               priority
             />
           </div>
-          <div className="hidden sm:block">
-            <p className="font-display font-bold text-gray-900 dark:text-white leading-tight">
+          <div className="hidden min-[360px]:block min-w-0">
+            <p className="font-display font-bold text-brand-900 dark:text-white leading-tight text-sm sm:text-base truncate">
               {schoolInfo.shortName}
             </p>
-            <p className="text-xs text-gray-500 dark:text-gray-400">Secondary School</p>
+            <p className="text-[10px] sm:text-xs text-brand-600/70 dark:text-brand-300/70 font-medium">
+              Secondary School
+            </p>
           </div>
         </Link>
 
-        <div className="hidden lg:flex items-center gap-1">
+        <div className="hidden lg:flex items-center gap-0.5">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               prefetch
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+              className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                 pathname === link.href
-                  ? "bg-brand-600 text-white shadow-md shadow-brand-600/30"
-                  : "text-gray-700 dark:text-gray-300 hover:bg-brand-50 dark:hover:bg-gray-800 hover:text-brand-700 dark:hover:text-brand-400"
+                  ? "bg-brand-700 text-white shadow-brand"
+                  : "text-brand-800 dark:text-brand-200 hover:bg-brand-50 dark:hover:bg-brand-900 hover:text-brand-700 dark:hover:text-white"
               }`}
             >
               {link.label}
@@ -80,24 +89,25 @@ export default function Navbar() {
           <Link
             href="/academics#computer-engineering"
             prefetch
-            className="ml-2 px-5 py-2 rounded-lg bg-gradient-to-r from-brand-600 to-accent-600 text-white text-sm font-semibold shadow-lg shadow-brand-600/30 hover:shadow-xl hover:scale-105 transition-all"
+            className="ml-2 px-5 py-2 rounded-lg bg-accent-600 text-white text-sm font-semibold shadow-accent hover:bg-accent-700 hover:shadow-lg active:scale-[0.98] transition-all duration-200"
           >
             Apply Now
           </Link>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           <button
             onClick={toggle}
-            className="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            className="p-2 rounded-lg text-brand-700 dark:text-brand-300 hover:bg-brand-50 dark:hover:bg-brand-900 transition-colors"
             aria-label="Toggle dark mode"
           >
             {dark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </button>
           <button
             onClick={() => setOpen(!open)}
-            className="lg:hidden p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+            className="lg:hidden p-2 rounded-lg text-brand-800 dark:text-brand-200 hover:bg-brand-50 dark:hover:bg-brand-900 transition-colors"
             aria-label="Toggle menu"
+            aria-expanded={open}
           >
             {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -105,17 +115,17 @@ export default function Navbar() {
       </nav>
 
       {open && (
-        <div className="lg:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 px-4 py-4 animate-fade-in">
-          <div className="flex flex-col gap-1">
+        <div className="lg:hidden border-t-2 border-accent-600 bg-white dark:bg-brand-950 animate-slide-down max-h-[calc(100vh-4rem)] overflow-y-auto scrollbar-thin">
+          <div className="flex flex-col gap-1 px-4 py-4">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 prefetch
-                className={`px-4 py-3 rounded-lg font-medium ${
+                className={`px-4 py-3.5 rounded-xl font-medium text-base transition-colors ${
                   pathname === link.href
-                    ? "bg-brand-600 text-white"
-                    : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                    ? "bg-brand-700 text-white shadow-brand"
+                    : "text-brand-800 dark:text-brand-200 hover:bg-brand-50 dark:hover:bg-brand-900"
                 }`}
               >
                 {link.label}
@@ -124,7 +134,7 @@ export default function Navbar() {
             <Link
               href="/academics#computer-engineering"
               prefetch
-              className="mt-2 px-4 py-3 rounded-lg bg-gradient-to-r from-brand-600 to-accent-600 text-white text-center font-semibold"
+              className="mt-2 px-4 py-3.5 rounded-xl bg-accent-600 text-white text-center font-semibold shadow-accent hover:bg-accent-700 transition-colors"
             >
               Apply Now
             </Link>
