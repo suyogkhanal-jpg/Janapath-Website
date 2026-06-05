@@ -22,6 +22,10 @@ async function main() {
   const tables = ["notices", "gallery", "contacts", "site_content"];
   for (const table of tables) {
     const { error } = await supabase.from(table).select("id", { count: "exact", head: true });
+    
+
+
+
     if (error) {
       console.error(`  ✗ ${table}: ${error.message}`);
       if (error.message.includes("does not exist") || error.code === "42P01") {
@@ -29,6 +33,8 @@ async function main() {
       }
       process.exit(1);
     }
+
+    
     console.log(`  ✓ ${table}: OK`);
   }
 

@@ -45,7 +45,11 @@ create table if not exists public.site_content (
   key text primary key default 'default',
   slider_texts jsonb not null default '[]'::jsonb,
   logo_url text not null default '/logo.png',
-  hero jsonb not null default '{"backgroundImageUrl":"/images/campus.jpg","imageOpacity":100,"overlayOpacity":55}'::jsonb,
+  hero jsonb not null default '{
+  "backgroundImageUrl": "/images/campus.jpg",
+  "imageOpacity": 100,
+  "overlayOpacity": 5
+}'::jsonb,
   hero_stats jsonb not null default '[]'::jsonb,
   principal jsonb not null default '{}'::jsonb,
   about jsonb not null default '{}'::jsonb,
