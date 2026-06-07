@@ -62,9 +62,10 @@ export default function Navbar() {
               src={imgSrc}
               alt={`${schoolInfo.name} logo`}
               fill
-              className="object-contain"
+              className="object-contain bg-transparent"
               sizes="44px"
               priority
+              style={{ background: "transparent" }}
               onError={() => setImgSrc("/logo.png")}
             />
           </div>
