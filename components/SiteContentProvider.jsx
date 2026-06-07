@@ -21,6 +21,7 @@ export function SiteContentProvider({ children }) {
       .then((r) => r.json())
       .then((res) => {
         if (res?.success) setContent(res.data);
+        if (res?.success) console.log("SiteContentProvider: loaded logoUrl ->", res.data?.logoUrl);
         return res?.data;
       })
       .catch(() => null)

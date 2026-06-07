@@ -18,6 +18,7 @@ export default function Navbar() {
   const { dark, toggle } = useTheme();
 
   const logoUrl = content?.logoUrl || "/logo.png";
+  const [imgSrc, setImgSrc] = useState(logoUrl);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -41,6 +42,11 @@ export default function Navbar() {
     };
   }, [open]);
 
+  useEffect(() => {
+    console.log("Navbar: logoUrl ->", logoUrl);
+    setImgSrc(logoUrl);
+  }, [logoUrl]);
+
   return (
     <header
       className={`sticky top-0 z-50 transition-all duration-300 border-b ${
@@ -53,12 +59,13 @@ export default function Navbar() {
         <Link href="/" prefetch className="flex items-center gap-2.5 sm:gap-3 group min-w-0">
           <div className="relative h-10 w-10 sm:h-11 sm:w-11 shrink-0">
             <Image
-              src={logoUrl}
+              src={imgSrc}
               alt={`${schoolInfo.name} logo`}
               fill
               className="object-contain"
               sizes="44px"
               priority
+              onError={() => setImgSrc("/logo.png")}
             />
           </div>
           <div className="hidden min-[360px]:block min-w-0">
