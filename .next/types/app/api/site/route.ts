@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 // File: C:\Users\khana\OneDrive\Desktop\Janapath-Website-main\app\api\site\route.js
-=======
-// File: C:\Users\khana\Janapath-Website\app\api\site\route.js
->>>>>>> d2f8d7893928863fe6bbbf76df4531f6d25db396
 import * as entry from '../../../../../app/api/site/route.js'
 import type { NextRequest } from 'next/server.js'
 

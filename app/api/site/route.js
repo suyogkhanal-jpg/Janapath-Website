@@ -59,11 +59,9 @@ export async function PUT(request) {
     const logoImage = form.get("logoImage");
     if (logoImage && typeof logoImage === "object" && logoImage.size) {
       const uploaded = await saveUploadedImage(logoImage);
-<<<<<<< HEAD
-      await deleteUploadedImageByUrl(logoUrl);
-=======
-      if (logoUrl.startsWith("/uploads/")) await deleteUploadedImageByUrl(logoUrl);
->>>>>>> d2f8d7893928863fe6bbbf76df4531f6d25db396
+      if (logoUrl && logoUrl.startsWith("/uploads/")) {
+        await deleteUploadedImageByUrl(logoUrl);
+      }
       logoUrl = uploaded.url;
     }
 
@@ -71,13 +69,9 @@ export async function PUT(request) {
     const heroBackgroundImage = form.get("heroBackgroundImage");
     if (heroBackgroundImage && typeof heroBackgroundImage === "object" && heroBackgroundImage.size) {
       const uploaded = await saveUploadedImage(heroBackgroundImage);
-<<<<<<< HEAD
-      await deleteUploadedImageByUrl(heroBackgroundUrl);
-=======
-      if (heroBackgroundUrl.startsWith("/uploads/")) {
+      if (heroBackgroundUrl && heroBackgroundUrl.startsWith("/uploads/")) {
         await deleteUploadedImageByUrl(heroBackgroundUrl);
       }
->>>>>>> d2f8d7893928863fe6bbbf76df4531f6d25db396
       heroBackgroundUrl = uploaded.url;
     }
 
